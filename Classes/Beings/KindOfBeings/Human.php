@@ -1,5 +1,5 @@
 <?php
-include (dirname(__DIR__).'/MainBeing.php');
+require (dirname(__DIR__).'/MainBeing.php');
 
 class human extends being
 {
@@ -8,7 +8,7 @@ class human extends being
 
    function NewHuman()
    {
-    include "Functions/CommonFunctions/RandomName.php";
+    require "Functions/CommonFunctions/RandomName.php";
     $this->name = RandomName();
     $genderoptions = array("male", "female");
     $genderkey = array_rand($genderoptions, 1);

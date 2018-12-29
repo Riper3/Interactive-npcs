@@ -1,7 +1,7 @@
 <?php
 function NewInsert($table, $object)
 {
- include "Config/bbdd.php";
+ require "Config/bbdd.php";
 
  $conn = new mysqli($servername, $username, $password, $dbname);
  $arrayvalues = (array) $object;
