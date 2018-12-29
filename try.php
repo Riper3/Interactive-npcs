@@ -1,12 +1,8 @@
 <?php
-include "Config/bbdd.php";
+include "Functions/BbddFunctions/InsertObject.php";
 include "Classes/Beings/KindOfBeings/Human.php";
 
 $pepe = new human();
-
-$sql = "INSERT INTO beings (Name, Money, Strength)
-VALUES ('John', $pepe->money, $pepe->strength)";
-
-$conn->query($sql);
-
-$conn->close();
+$pepe->NewBeing();
+NewInsert("beings", $pepe);
+print_r($pepe);
