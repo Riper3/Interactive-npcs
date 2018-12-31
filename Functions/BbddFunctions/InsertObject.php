@@ -7,7 +7,7 @@ function NewInsert($table, $object)
  $arrayvalues = (array) $object;
  $columns = implode(", ",array_keys($arrayvalues));
  $values = implode("', '", $arrayvalues);
- $sql = "INSERT INTO ".$table."($columns) VALUES ('$values')";
+ $sql = "INSERT INTO $table ($columns) VALUES ('$values')";
 
  if ($conn->query($sql) === TRUE)
  {
