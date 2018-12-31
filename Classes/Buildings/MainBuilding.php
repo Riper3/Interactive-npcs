@@ -1,10 +1,14 @@
 <?php
 class building
 {
- public $color = "white";
- public $materials =
- [
-   "stone" => 100,
-   "wood" => 100
- ];
+ public $street;
+ public $number;
+ public $villageId;
+ public $wood;
+ public $stone;
+ public $iron;
+ public $clay;
+ public $price;
+ public $beingId;
+ public $size;
 }
