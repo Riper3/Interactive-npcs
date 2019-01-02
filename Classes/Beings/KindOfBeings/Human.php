@@ -8,7 +8,7 @@ class human extends being
 
    function NewHuman()
    {
-    require "Functions/CommonFunctions/RandomName.php";
+    include_once "Functions/CommonFunctions/RandomName.php";
     $this->name = RandomName();
     $this->surname = RandomSurname();
     $genderoptions = array("male", "female");

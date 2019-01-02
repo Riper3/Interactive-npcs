@@ -5,6 +5,9 @@ require "Functions/BbddFunctions/Update.php";
 require "Classes/Beings/KindOfBeings/Human.php";
 require "Classes/Buildings/KindOfBuilding/Shack.php";
 
+$i = 0;
+while($i < 20)
+{
 $human = new human();
 $human->NewHuman();
 $beingid = NewInsert("beings", $human);
@@ -14,3 +17,5 @@ $house->NewShack($beingid);
 $buildingid = NewInsert("buildings", $house);
 
 Update("beings", "buildingId='$buildingid'", "beingId='$beingid'");
+$i++;
+}
