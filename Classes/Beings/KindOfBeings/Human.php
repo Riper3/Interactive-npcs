@@ -10,6 +10,7 @@ class human extends being
    {
     require "Functions/CommonFunctions/RandomName.php";
     $this->name = RandomName();
+    $this->surname = RandomSurname();
     $genderoptions = array("male", "female");
     $genderkey = array_rand($genderoptions, 1);
     $this->gender = $genderoptions[$genderkey];

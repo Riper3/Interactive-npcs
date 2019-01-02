@@ -1,7 +1,9 @@
 <?php
 class being
 {
- public $name = "npc";
+ public $beingId;
+ public $name;
+ public $surname;
  public $type;
  public $gender;
  public $money;
