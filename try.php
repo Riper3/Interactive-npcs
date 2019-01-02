@@ -6,7 +6,7 @@ require "Classes/Beings/KindOfBeings/Human.php";
 require "Classes/Buildings/KindOfBuilding/Shack.php";
 
 $i = 0;
-while($i < 20)
+while($i < 10000)
 {
 $human = new human();
 $human->NewHuman();
