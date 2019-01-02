@@ -10,7 +10,7 @@ function NewInsert($table, $object)
 
  if ($conn->query($sql) === TRUE)
  {
-    echo "New record created successfully";
+   return $conn->insert_id;
  }
  else
  {
