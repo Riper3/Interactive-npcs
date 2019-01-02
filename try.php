@@ -4,18 +4,31 @@ require "Functions/BbddFunctions/Select.php";
 require "Functions/BbddFunctions/Update.php";
 require "Classes/Beings/KindOfBeings/Human.php";
 require "Classes/Buildings/KindOfBuilding/Shack.php";
+require "Classes/Villages/KindOfVillages/Romanicvillage.php";
 
 $i = 0;
-while($i < 10000)
+$x = 50;
+while($i < 1000)
 {
+if($x == 50)
+{
+$village = new romanicvillage();
+$village->NewVillage();
+$villageid = NewInsert("villages", $village);
+$x = 0;
+}
+// $poblation = count(Select("buildings", "buildingId", "villageId=$villageid"));
+
 $human = new human();
 $human->NewHuman();
 $beingid = NewInsert("beings", $human);
 
 $house = new shack();
 $house->NewShack($beingid);
+$house->villageId = $villageid;
 $buildingid = NewInsert("buildings", $house);
-
 Update("beings", "buildingId='$buildingid'", "beingId='$beingid'");
+
+$x++;
 $i++;
 }

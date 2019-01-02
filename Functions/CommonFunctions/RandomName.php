@@ -1,18 +1,10 @@
 <?php
-function RandomName()
+function RandomName($type)
 {
-  $url = "Etc/names.json";
+  $url = "Etc/$type.json";
   $data = file_get_contents($url);
   $json = json_decode($data);
-  $key = rand(0, 21936);
-  return $json[$key];
-}
-
-function RandomSurname()
-{
-  $url = "Etc/names.json";
-  $data = file_get_contents($url);
-  $json = json_decode($data);
-  $key = rand(0, 21986);
+  $length = count($json);
+  $key = rand(0, $length);
   return $json[$key];
 }

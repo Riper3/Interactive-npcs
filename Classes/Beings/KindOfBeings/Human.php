@@ -9,8 +9,8 @@ class human extends being
    function NewHuman()
    {
     include_once "Functions/CommonFunctions/RandomName.php";
-    $this->name = RandomName();
-    $this->surname = RandomSurname();
+    $this->name = RandomName("names");
+    $this->surname = RandomName("surnames");
     $genderoptions = array("male", "female");
     $genderkey = array_rand($genderoptions, 1);
     $this->gender = $genderoptions[$genderkey];

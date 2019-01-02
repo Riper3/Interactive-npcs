@@ -1,6 +1,7 @@
 <?php
 class building
 {
+ public $buildingId;
  public $street;
  public $number;
  public $villageId;
