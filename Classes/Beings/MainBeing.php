@@ -6,6 +6,7 @@ class being
  public $surname;
  public $type;
  public $gender;
+ public $professionId;
  public $money;
  public $buildingId;
  public $strength;

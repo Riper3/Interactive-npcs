@@ -5,6 +5,16 @@ require "Functions/BbddFunctions/Update.php";
 require "Classes/Beings/KindOfBeings/Human.php";
 require "Classes/Buildings/KindOfBuilding/Shack.php";
 require "Classes/Villages/KindOfVillages/Romanicvillage.php";
+require "Classes/Professions/MainProfession.php";
+
+/*
+$profession = new profession;
+$profession->name = "Woodcuter";
+$profession->moneyperhour = 10;
+$profession->fatigueperhour = 5;
+$villageid = NewInsert("professions", $profession);
+die();
+*/
 
 $i = 0;
 $x = 50;

@@ -1,6 +1,8 @@
 <?php
 class profession
 {
-  public $moneyperhour = 10;
-  public $fatigueperhour = 10;
+  public $professionId;
+  public $name;
+  public $moneyperhour;
+  public $fatigueperhour;
 }
