@@ -9,11 +9,17 @@ require "Classes/Professions/MainProfession.php";
 
 /*
 $profession = new profession;
+$profession->beingId = 1;
 $profession->name = "Woodcuter";
+$profession->villageId = 1;
 $profession->moneyperhour = 10;
 $profession->fatigueperhour = 5;
+$profession->schedule = 1;
+$profession->resource = "Wood";
+$profession->amountperhour = 5;
+$profession->consumedresource = "NULL";
+$profession->consumedamount = 0;
 $villageid = NewInsert("professions", $profession);
-die();
 */
 
 $i = 0;
