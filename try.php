@@ -10,7 +10,7 @@ require "Classes/Professions/MainProfession.php";
 /*
 $profession = new profession;
 $profession->beingId = 1;
-$profession->name = "Woodcuter";
+$profession->type = "Woodcuter";
 $profession->villageId = 1;
 $profession->moneyperhour = 10;
 $profession->fatigueperhour = 5;

@@ -3,7 +3,7 @@ class profession
 {
   public $professionId;
   public $beingId;
-  public $name;
+  public $type;
   public $zoneId;
   public $villageId;
   public $moneyperhour;
