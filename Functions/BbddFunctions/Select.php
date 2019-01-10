@@ -5,19 +5,16 @@ function Select($table, $columns, $condition)
 
  $sql = "SELECT $columns FROM $table WHERE $condition";
 
- $queryresult = $conn->query($sql);
- $result = $queryresult->fetch_assoc();
+ $result = $conn->query($sql);
 
- $numberofelements = count($result);
-
- if($numberofelements == 1)
- {
-   return $result[$columns];
- }
- else
- {
-   return $result;
- }
+ $i = 0;
+ while ($row = $result->fetch_assoc())
+    {
+      $finalresult[$i] = $row;
+      $i++;
+    }
+    
+ return $finalresult;
 
  $conn->close();
 }
