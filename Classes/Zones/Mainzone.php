@@ -5,5 +5,5 @@ class zone
   public $name;
   public $type;
   public $resource;
-  public $resorceamount;
+  public $resourceamount;
 }

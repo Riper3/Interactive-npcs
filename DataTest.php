@@ -19,11 +19,15 @@ while($i < 100)
     $village->NewVillage();
     $villageid = NewInsertObject("villages", $village);
 
+    $storage->ownertype = "village";
+    $storage->ownerId = $villageid;
+    NewInsertObject("storages", $storage);
+
     while($z < 5)
     {
       $zone = new forest();
       $zone->name = $i . '-' . $z . '- zonetest';
-      $zone->resorceamount = rand(100,10000);
+      $zone->resourceamount = rand(100,10000);
       $zoneid[$z] = NewInsertObject("zones", $zone);
       $z++;
     }
