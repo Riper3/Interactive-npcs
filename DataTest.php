@@ -1,12 +1,14 @@
 <?php
-require "Functions/BbddFunctions/Insert.php";
-require "Functions/BbddFunctions/Select.php";
-require "Functions/BbddFunctions/Update.php";
-require "Classes/Beings/KindOfBeings/Human.php";
-require "Classes/Buildings/KindOfBuilding/Shack.php";
-require "Classes/Villages/KindOfVillages/Romanicvillage.php";
-require "Classes/Professions/KindOfProfessions/Woodcuter.php";
-require "Classes/Zones/KindOfZones/Forest.php";
+require_once "Functions/BbddFunctions/Insert.php";
+require_once "Functions/BbddFunctions/Select.php";
+require_once "Functions/BbddFunctions/Update.php";
+require_once "Classes/Beings/KindOfBeings/Human.php";
+require_once "Classes/Buildings/KindOfBuilding/Shack.php";
+require_once "Classes/Villages/KindOfVillages/Romanicvillage.php";
+require_once "Classes/Professions/KindOfProfessions/Woodcuter.php";
+require_once "Classes/Zones/KindOfZones/Forest.php";
+require_once "Classes/Zones/KindOfZones/Stonemine.php";
+require_once "Classes/Zones/KindOfZones/Foodplace.php";
 
 $i = 0;
 $x = 50;
@@ -19,14 +21,18 @@ while($i < 100)
     $village->NewVillage();
     $villageid = NewInsertObject("villages", $village);
 
+    $storage = new stdClass();
     $storage->ownertype = "village";
     $storage->ownerId = $villageid;
     NewInsertObject("storages", $storage);
 
     while($z < 5)
     {
-      $zone = new forest();
-      $zone->name = $i . '-' . $z . '- zonetest';
+      $typezones = ["forest", "stonemine", "foodplace"];
+      $newzone = $typezones[rand(0,2)];
+      $zone = new $newzone();
+      $zone->villageId = $villageid;
+      $zone->name = $i . '-' . $z . '-'. $newzone;
       $zone->resourceamount = rand(100,10000);
       $zoneid[$z] = NewInsertObject("zones", $zone);
       $z++;
@@ -39,6 +45,12 @@ while($i < 100)
   $human = new human();
   $human->NewHuman();
   $beingid = NewInsertObject("beings", $human);
+
+  $skills = SelectAll("beings", "strength, intelligence, dexterity", "beingId = $beingid");
+  $bestskill = array_search(max($skills[0]),$skills[0]);
+
+  $avaliablezones = SelectAll("zones", "type", "villageId = $villageid");
+  print_r($avaliablezones);
 
   $profession = new woodcuter;
   $q = rand(0,4);

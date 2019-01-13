@@ -1,5 +1,5 @@
 <?php
-require (dirname(__DIR__).'/MainProfession.php');
+require_once (dirname(__DIR__).'/MainProfession.php');
 
 class woodcuter extends profession
 {

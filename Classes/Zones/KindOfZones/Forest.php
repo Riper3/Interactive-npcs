@@ -1,5 +1,5 @@
 <?php
-require (dirname(__DIR__).'/Mainzone.php');
+require_once (dirname(__DIR__).'/Mainzone.php');
 
 class forest extends zone
 {
