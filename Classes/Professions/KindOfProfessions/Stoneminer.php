@@ -3,8 +3,8 @@ require_once (dirname(__DIR__).'/MainProfession.php');
 
 class stoneminer extends profession
 {
-  public $name = "Stoneminer";
-  public $resource = "Stone";
+  public $type = "Stoneminer";
+  public $generatedresource = "Stone";
 
   function NewStoneMiner($villageid, $zoneId)
   {

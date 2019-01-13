@@ -6,6 +6,8 @@ require_once "Classes/Beings/KindOfBeings/Human.php";
 require_once "Classes/Buildings/KindOfBuilding/Shack.php";
 require_once "Classes/Villages/KindOfVillages/Romanicvillage.php";
 require_once "Classes/Professions/KindOfProfessions/Woodcuter.php";
+require_once "Classes/Professions/KindOfProfessions/Hunter.php";
+require_once "Classes/Professions/KindOfProfessions/Stoneminer.php";
 require_once "Classes/Zones/KindOfZones/Forest.php";
 require_once "Classes/Zones/KindOfZones/Stonemine.php";
 require_once "Classes/Zones/KindOfZones/Foodplace.php";
@@ -48,14 +50,26 @@ while($i < 100)
 
   $skills = SelectAll("beings", "strength, intelligence, dexterity", "beingId = $beingid");
   $bestskill = array_search(max($skills[0]),$skills[0]);
+  $professionstype = ["strength" => "woodcuter", "intelligence" => "hunter", "dexterity" => "stoneminer"];
+  $zonestype = ["woodcuter" => "Wood", "hunter" => "Food", "stoneminer" => "Stone"];
+  $professionnew = $professionstype[$bestskill];
+  $professiosource = $zonestype[$professionnew];
 
-  $avaliablezones = SelectAll("zones", "type", "villageId = $villageid");
-  print_r($avaliablezones);
+  $avaliablezones = SelectAll("zones", "zoneId, resource", "villageId = $villageid");
 
-  $profession = new woodcuter;
-  $q = rand(0,4);
-  $profession->NewWoodcuter($villageid, $zoneid[$q]);
-  $professionid = NewInsertObject("professions", $profession);
+  if (array_search($professiosource, array_column($avaliablezones, "resource")))
+  {
+    $profession = new $professionnew;
+    $q = array_search($professiosource, $avaliablezones);
+    $newclass = "New".$professionnew;
+    $profession->$newclass($villageid, $avaliablezones[$q]["zoneId"]);
+    $professionid = NewInsertObject("professions", $profession);
+  }
+  else
+  {
+    $professionid = 0;
+  }
+  // hacer que cada trabajador pueda tener su tipo de zona y ver si está disponible
 
   $house = new shack();
   $house->NewShack($beingid);

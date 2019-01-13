@@ -3,8 +3,8 @@ require_once (dirname(__DIR__).'/MainProfession.php');
 
 class hunter extends profession
 {
-  public $name = "Hunter";
-  public $resource = "Food";
+  public $type = "Hunter";
+  public $generatedresource = "Food";
 
   function NewHunter($villageid, $zoneId)
   {
