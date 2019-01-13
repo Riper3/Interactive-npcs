@@ -1,5 +1,5 @@
 <?php
-function NewInsert($table, $object)
+function NewInsertObject($table, $object)
 {
  require "Config/bbdd.php";
 
