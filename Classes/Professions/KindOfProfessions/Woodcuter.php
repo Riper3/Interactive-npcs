@@ -10,8 +10,7 @@ class woodcuter extends profession
   {
     $this->villageId = $villageid;
     $this->zoneId = $zoneId;
-    $this->moneyperhour = rand(8,10);
     $this->schedule = rand(1,3);
-    $this->amountperhour = rand(80,100);
+    $this->requieredskill = "strength";
   }
 }
