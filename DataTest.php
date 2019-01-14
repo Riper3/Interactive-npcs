@@ -2,6 +2,7 @@
 require_once "Functions/BbddFunctions/Insert.php";
 require_once "Functions/BbddFunctions/Select.php";
 require_once "Functions/BbddFunctions/Update.php";
+require_once "Functions/CommonFunctions/GetBestProfession.php";
 require_once "Classes/Beings/KindOfBeings/Human.php";
 require_once "Classes/Buildings/KindOfBuilding/Shack.php";
 require_once "Classes/Villages/KindOfVillages/Romanicvillage.php";
@@ -42,34 +43,12 @@ while($i < 100)
     $x = 0;
     $z = 0;
   }
-  // $poblation = count(Select("buildings", "buildingId", "villageId=$villageid"));
 
   $human = new human();
   $human->NewHuman();
   $beingid = NewInsertObject("beings", $human);
 
-  $skills = SelectAll("beings", "strength, intelligence, dexterity", "beingId = $beingid");
-  $bestskill = array_search(max($skills[0]),$skills[0]);
-  $professionstype = ["strength" => "woodcuter", "intelligence" => "hunter", "dexterity" => "stoneminer"];
-  $zonestype = ["woodcuter" => "Wood", "hunter" => "Food", "stoneminer" => "Stone"];
-  $professionnew = $professionstype[$bestskill];
-  $professiosource = $zonestype[$professionnew];
-
-  $avaliablezones = SelectAll("zones", "zoneId, resource", "villageId = $villageid");
-
-  if (array_search($professiosource, array_column($avaliablezones, "resource")))
-  {
-    $profession = new $professionnew;
-    $q = array_search($professiosource, $avaliablezones);
-    $newclass = "New".$professionnew;
-    $profession->$newclass($villageid, $avaliablezones[$q]["zoneId"]);
-    $professionid = NewInsertObject("professions", $profession);
-  }
-  else
-  {
-    $professionid = 0;
-  }
-  // hacer que cada trabajador pueda tener su tipo de zona y ver si está disponible
+  $professionid = GetBestProfession($beingid, $villageid);
 
   $house = new shack();
   $house->NewShack($beingid);
