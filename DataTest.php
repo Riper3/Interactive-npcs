@@ -36,7 +36,7 @@ while($i < 100)
       $zone = new $newzone();
       $zone->villageId = $villageid;
       $zone->name = $i . '-' . $z . '-'. $newzone;
-      $zone->resourceamount = rand(100,10000);
+      $zone->resourceamount = rand(10000,1000000);
       $zoneid[$z] = NewInsertObject("zones", $zone);
       $z++;
     }

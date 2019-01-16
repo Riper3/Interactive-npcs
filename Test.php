@@ -1,7 +1,7 @@
 <?php
 require "Functions/EngineFunctions/Day.php";
 
-while (TRUE) 
+while (TRUE)
 {
 Day();
 }
