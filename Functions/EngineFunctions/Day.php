@@ -1,6 +1,7 @@
 <?php
 require "Functions/BbddFunctions/Select.php";
 require "Functions/BbddFunctions/Update.php";
+require "Functions/BbddFunctions/Delete.php";
 require "SubEngineProcess/GoWork.php";
 require "SubEngineProcess/Working.php";
 

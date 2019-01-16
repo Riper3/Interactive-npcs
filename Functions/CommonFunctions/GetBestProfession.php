@@ -11,11 +11,11 @@ function GetBestProfession($beingid, $villageid)
     $bestskill = array_search(max($skills[0]),$skills[0]);
     $professionnew = $professionstype[$bestskill];
     $professiosource = $zonestype[$professionnew];
-    
+
     if (in_array($professiosource, array_column($avaliablezones, "resource")))
     {
       $profession = new $professionnew;
-      $q = array_search($professiosource, $avaliablezones);
+      $q = array_search($professiosource, array_column($avaliablezones, "resource"));
       $newclass = "New".$professionnew;
       $profession->$newclass($villageid, $avaliablezones[$q]["zoneId"]);
       $professionid = NewInsertObject("professions", $profession);
