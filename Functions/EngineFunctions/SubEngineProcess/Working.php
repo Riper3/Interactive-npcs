@@ -4,6 +4,7 @@ function Working($people)
   foreach ($people as $person)
   {
      $checkprofession = SelectOne("beings", "professionId" ,"beingId=$person[beingId]");
+     $villageid = SelectOneJoin("beings", "villageId", "buildings", "beings.beingId = buildings.beingId", "beings.beingId = $person[beingId]");
 
      if($checkprofession != 0)
      {
@@ -26,8 +27,6 @@ function Working($people)
          $currentmoney = SelectOne("beings", "money", "beingId=$person[beingId]");
          $totalmoney = $currentmoney + $earnmoney;
          Update("beings", "money=$totalmoney", "beingId=$person[beingId]");
-
-         $villageid = SelectOneJoin("beings", "villageId", "buildings", "beings.beingId = buildings.beingId", "beings.beingId = $person[beingId]");
 
          $currentmoney = SelectOne("villages", "money", "villageId=$villageid");
          $totalmoney = $currentmoney - $earnmoney;

@@ -13,8 +13,11 @@ function SelectAll($table, $columns, $condition)
       $finalresult[$i] = $row;
       $i++;
     }
-
- return $finalresult;
+    
+ if(!empty($finalresult))
+ {
+  return $finalresult;
+ }
 
  $conn->close();
 }

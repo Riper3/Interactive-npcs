@@ -1,6 +1,7 @@
 <?php
-function GetBestProfession($beingid, $villageid)
+function GetBestProfession($beingid)
 {
+  $villageid = SelectOneJoin("beings", "villageId", "buildings", "beings.beingId = buildings.beingId", "beings.beingId = $beingid");
   $skills = SelectAll("beings", "strength, intelligence, dexterity", "beingId = $beingid");
   $professionstype = ["strength" => "woodcuter", "intelligence" => "hunter", "dexterity" => "stoneminer"];
   $zonestype = ["woodcuter" => "Wood", "hunter" => "Food", "stoneminer" => "Stone"];

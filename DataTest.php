@@ -48,12 +48,13 @@ while($i < 100)
   $human->NewHuman();
   $beingid = NewInsertObject("beings", $human);
 
-  $professionid = GetBestProfession($beingid, $villageid);
-
   $house = new shack();
   $house->NewShack($beingid);
   $house->villageId = $villageid;
   $buildingid = NewInsertObject("buildings", $house);
+
+  $professionid = GetBestProfession($beingid);
+
   Update("beings", "buildingId='$buildingid'", "beingId='$beingid'");
   Update("beings", "professionId='$professionid'", "beingId='$beingid'");
   Update("professions", "beingId='$beingid'", "beingId=0");
