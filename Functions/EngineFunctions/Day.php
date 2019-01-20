@@ -11,10 +11,10 @@ function Day()
 {
   for ($i=1; $i <= 3; $i++)
   {
+    echo $i.'-_-';
     $people = Gowork($i);
     Working($people);
-
-    if($i = 1)
+    if($i == 1)
     {
       GetNewJob();
     }

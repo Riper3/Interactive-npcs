@@ -15,7 +15,7 @@ function Working($people)
        //by now the wood cost 5, this is only for test
 
        $resourceamount = (($skill * 0.2) + ($stamina * 0.1)) * 8;
-       $earnmoney = $resourceamount/6;
+       $earnmoney = round($resourceamount/6);
 
        $zoneid = SelectOne("professions", "zoneId", "beingId=$person[beingId]");
        $zoneresource = SelectOne("zones", "resourceamount", "zoneId=$zoneid");
