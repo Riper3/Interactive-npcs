@@ -3,9 +3,9 @@ require "Functions/BbddFunctions/Select.php";
 require "Functions/BbddFunctions/Update.php";
 require "Functions/BbddFunctions/Insert.php";
 require "Functions/BbddFunctions/Delete.php";
-require "SubEngineProcess/GoWork.php";
-require "SubEngineProcess/Working.php";
-require "SubEngineProcess/GetNewJob.php";
+require "BeingsProcess/GoWork.php";
+require "BeingsProcess/Working.php";
+require "BeingsProcess/GetNewJob.php";
 
 function Day()
 {
@@ -17,7 +17,7 @@ function Day()
     {
       Working($people);
     }
-    
+
     if($i == 1)
     {
       GetNewJob();
