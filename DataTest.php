@@ -56,8 +56,6 @@ while($i < 100)
   $professionid = GetBestProfession($beingid);
 
   Update("beings", "buildingId='$buildingid'", "beingId='$beingid'");
-  Update("beings", "professionId='$professionid'", "beingId='$beingid'");
-  Update("professions", "beingId='$beingid'", "beingId=0");
 
   $x++;
   $i++;

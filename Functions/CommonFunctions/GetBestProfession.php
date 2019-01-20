@@ -18,8 +18,9 @@ function GetBestProfession($beingid)
       $profession = new $professionnew;
       $q = array_search($professiosource, array_column($avaliablezones, "resource"));
       $newclass = "New".$professionnew;
-      $profession->$newclass($villageid, $avaliablezones[$q]["zoneId"]);
+      $profession->$newclass($villageid, $avaliablezones[$q]["zoneId"], $beingid);
       $professionid = NewInsertObject("professions", $profession);
+      Update("beings", "professionId='$professionid'", "beingId='$beingid'");
       $i = 1;
 
       return $professionid;

@@ -6,8 +6,9 @@ class woodcuter extends profession
   public $type = "Woodcuter";
   public $generatedresource = "Wood";
 
-  function NewWoodcuter($villageid, $zoneId)
+  function NewWoodcuter($villageid, $zoneId, $beingid)
   {
+    $this->beingId = $beingid;
     $this->villageId = $villageid;
     $this->zoneId = $zoneId;
     $this->schedule = rand(1,3);
