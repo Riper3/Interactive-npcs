@@ -1,7 +1,6 @@
 <?php
 function Gowork($schedule)
 {
-  $people = SelectAll("professions", "beingId, requieredskill, generatedresource", "schedule=$schedule");
-
+  $people = SelectAllJoin("professions", "beingId, skill, resource", "professionstype", "professions.professiontypeId = professionstype.professiontypeId", "schedule=$schedule");
   return $people;
 }

@@ -3,8 +3,7 @@ require_once (dirname(__DIR__).'/MainProfession.php');
 
 class hunter extends profession
 {
-  public $type = "Hunter";
-  public $generatedresource = "Food";
+  public $professiontypeId = 2;
 
   function NewHunter($villageid, $zoneId, $beingid)
   {
@@ -12,6 +11,5 @@ class hunter extends profession
     $this->villageId = $villageid;
     $this->zoneId = $zoneId;
     $this->schedule = rand(1,3);
-    $this->requieredskill = "intelligence";
   }
 }

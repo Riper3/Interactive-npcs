@@ -8,7 +8,7 @@ function Working($people)
 
      if($checkprofession != 0)
      {
-       $skill = SelectOne("beings", $person['requieredskill'], "beingId=$person[beingId]");
+       $skill = SelectOne("beings", $person['skill'], "beingId=$person[beingId]");
        $stamina = SelectOne("beings", "stamina", "beingId=$person[beingId]");
        $professionid = SelectOne("beings", "professionId", "beingId=$person[beingId]");
 
@@ -32,9 +32,9 @@ function Working($people)
          $totalmoney = $currentmoney - $earnmoney;
          Update("villages", "money=$totalmoney", "villageId=$villageid");
 
-         $currentresource = SelectOne("storages", "$person[generatedresource]", "ownerId=$villageid");
+         $currentresource = SelectOne("storages", "$person[resource]", "ownerId=$villageid");
          $totalresource = $currentresource + $resourceamount;
-         Update("storages", "$person[generatedresource]=$totalresource", "ownerId=$villageid");
+         Update("storages", "$person[resource]=$totalresource", "ownerId=$villageid");
        }
        else
        {
