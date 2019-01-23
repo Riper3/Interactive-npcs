@@ -6,6 +6,8 @@ require "Functions/BbddFunctions/Delete.php";
 require "BeingsProcess/GoWork.php";
 require "BeingsProcess/Working.php";
 require "BeingsProcess/GetNewJob.php";
+require "ZonesProcess/NewZone.php";
+require "ZonesProcess/ZoneMapper.php";
 
 function Day()
 {
@@ -20,6 +22,8 @@ function Day()
 
     if($i == 1)
     {
+      $villagesid = ZoneMapper();
+      NewZone($villagesid);
       GetNewJob();
     }
   }
