@@ -48,12 +48,18 @@ function SelectOneJoin($table, $columns, $join, $onjoin, $condition)
  $conn->close();
 }
 
-function SelectAllJoin($table, $columns, $join, $onjoin, $condition)
+function SelectAllJoin($table, $columns, $join, $onjoin, $condition=NULL)
 {
  require "Config/bbdd.php";
 
- $sql = "SELECT $columns FROM $table JOIN $join ON $onjoin WHERE $condition";
-
+ if($condition != NULL)
+ {
+   $sql = "SELECT $columns FROM $table JOIN $join ON $onjoin WHERE $condition";
+ }
+ else
+ {
+   $sql = "SELECT $columns FROM $table JOIN $join ON $onjoin";
+ }
  $result = $conn->query($sql);
 
  $i = 0;
