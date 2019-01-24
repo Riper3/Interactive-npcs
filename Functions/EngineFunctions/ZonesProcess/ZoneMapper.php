@@ -15,6 +15,8 @@ function ZoneMapper()
       $villageszones[] = $villages[$countallzones];
     }
   }
-
-  return $villageszones;
+  if(!empty($villageszones))
+  {
+   return $villageszones;
+  }
 }

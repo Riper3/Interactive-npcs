@@ -23,7 +23,10 @@ function Day()
     if($i == 1)
     {
       $villagesid = ZoneMapper();
-      NewZone($villagesid);
+      if(!empty($villagesid))
+      {
+        NewZone($villagesid);
+      }
       GetNewJob();
     }
   }
