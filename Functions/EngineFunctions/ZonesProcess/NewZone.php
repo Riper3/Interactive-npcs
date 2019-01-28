@@ -1,9 +1,5 @@
 <?php
 
-require_once "Classes/Zones/KindOfZones/Forest.php";
-require_once "Classes/Zones/KindOfZones/Stonemine.php";
-require_once "Classes/Zones/KindOfZones/Foodplace.php";
-
 function NewZone($villagesid)
 {
   $zonestype = scandir("Classes/Zones/KindOfZones");
