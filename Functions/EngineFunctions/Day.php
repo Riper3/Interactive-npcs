@@ -1,16 +1,4 @@
 <?php
-require "Functions/BbddFunctions/Select.php";
-require "Functions/BbddFunctions/Update.php";
-require "Functions/BbddFunctions/Insert.php";
-require "Functions/BbddFunctions/Delete.php";
-require "Classes/Zones/KindOfZones/Forest.php";
-require "Classes/Zones/KindOfZones/Stonemine.php";
-require "Classes/Zones/KindOfZones/Foodplace.php";
-require "BeingsProcess/GoWork.php";
-require "BeingsProcess/Working.php";
-require "BeingsProcess/GetNewJob.php";
-require "ZonesProcess/NewZone.php";
-require "ZonesProcess/ZoneMapper.php";
 
 function Day()
 {
@@ -18,9 +6,12 @@ function Day()
   {
     $people = Gowork($i);
 
-    if(!empty($people))
+    for ($x=1; $x <= 8; $x++)
     {
-      Working($people);
+      if(!empty($people))
+      {
+        Working($people);
+      }
     }
 
     if($i == 1)
@@ -30,6 +21,7 @@ function Day()
       {
         NewZone($villagesid);
       }
+
       GetNewJob();
     }
   }

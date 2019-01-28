@@ -11,7 +11,7 @@ function Working($people)
        $skill = SelectOne("beings", $person['skill'], "beingId=$person[beingId]");
        $stamina = SelectOne("beings", "stamina", "beingId=$person[beingId]");
 
-       $resourceamount = (($skill * 20) + ($stamina * 0.1)) * 8;
+       $resourceamount = (($skill * 20) + ($stamina * 0.1));
        $earnmoney = round($resourceamount * 4);
 
        $zoneid = SelectOne("professions", "zoneId", "beingId=$person[beingId]");

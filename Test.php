@@ -1,7 +1,7 @@
 <?php
-require "Functions/EngineFunctions/Day.php";
+require "Functions/EngineFunctions/Year.php";
 
 while (TRUE)
 {
-Day();
+Year();
 }
