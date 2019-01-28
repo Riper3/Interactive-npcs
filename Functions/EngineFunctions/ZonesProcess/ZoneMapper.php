@@ -6,10 +6,9 @@ function ZoneMapper()
   array_multisort($villages, SORT_ASC);
   $countzones = array_count_values(array_column($villages, 'villageId'));
 
-  $countallzones = -1;
   foreach ($countzones as $realcount)
   {
-    $countallzones = $countallzones + $realcount;
+    $countallzones = $realcount - 1;
     if($realcount < 5)
     {
       $villageszones[] = $villages[$countallzones];
