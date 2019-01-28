@@ -10,11 +10,8 @@ function Working($people)
      {
        $skill = SelectOne("beings", $person['skill'], "beingId=$person[beingId]");
        $stamina = SelectOne("beings", "stamina", "beingId=$person[beingId]");
-       $professionid = SelectOne("beings", "professionId", "beingId=$person[beingId]");
 
-       //by now the wood cost 5, this is only for test
-
-       $resourceamount = (($skill * 20) + ($stamina * 0.1)) * 8;
+       $resourceamount = (($skill * 0.2) + ($stamina * 0.1)) * 8;
        $earnmoney = round($resourceamount * 4);
 
        $zoneid = SelectOne("professions", "zoneId", "beingId=$person[beingId]");
