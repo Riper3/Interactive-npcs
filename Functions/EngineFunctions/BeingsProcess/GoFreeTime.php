@@ -18,8 +18,15 @@ function GoFreeTime($schedule)
     if(!empty($stoppeople))
     {
       $freepeople = array_merge($peoplefree, $stoppeople);
+      return $freepeople;
+    }
+    else
+    {
+      return $peoplefree;
     }
   }
-
-  return $freepeople;
+  else
+  {
+    return $peoplefree;
+  }
 }
