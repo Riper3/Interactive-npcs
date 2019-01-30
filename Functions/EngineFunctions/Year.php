@@ -9,6 +9,7 @@ require "Classes/Zones/KindOfZones/Foodplace.php";
 require "BeingsProcess/GoWork.php";
 require "BeingsProcess/Working.php";
 require "BeingsProcess/GetNewJob.php";
+require "BeingsProcess/GoFreeTime.php";
 require "ZonesProcess/NewZone.php";
 require "ZonesProcess/ZoneMapper.php";
 require "Functions/EngineFunctions/Month.php";
