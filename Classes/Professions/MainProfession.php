@@ -1,5 +1,7 @@
 <?php
-class profession
+require (dirname(__DIR__).'/App.php');
+
+class profession extends app
 {
   public $professionId;
   public $beingId;
@@ -7,4 +9,6 @@ class profession
   public $zoneId;
   public $villageId;
   public $schedule;
+
+   protected $table = "professions";
 }

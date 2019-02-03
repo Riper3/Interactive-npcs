@@ -1,5 +1,7 @@
 <?php
-class building
+require (dirname(__DIR__).'/App.php');
+
+class building extends app
 {
  public $buildingId;
  public $street;
@@ -7,4 +9,6 @@ class building
  public $villageId;
  public $beingId;
  public $size;
+
+  protected $table = "buildings";
 }

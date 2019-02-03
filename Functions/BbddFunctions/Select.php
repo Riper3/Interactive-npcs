@@ -22,18 +22,7 @@ function SelectAll($table, $columns, $condition)
  $conn->close();
 }
 
-function SelectOne($table, $columns, $condition)
-{
- require "Config/bbdd.php";
 
- $sql = "SELECT $columns FROM $table WHERE $condition";
-
- $result = $conn->query($sql)->fetch_row();
-
- return $result[0];
-
- $conn->close();
-}
 
 function SelectOneJoin($table, $columns, $join, $onjoin, $condition)
 {

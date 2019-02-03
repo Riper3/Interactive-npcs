@@ -1,5 +1,7 @@
 <?php
-class being
+require (dirname(__DIR__).'/App.php');
+
+class being extends app
 {
  public $beingId;
  public $name;
@@ -13,4 +15,6 @@ class being
  public $intelligence;
  public $dexterity;
  public $stamina;
+
+ protected $table = "beings";
 }

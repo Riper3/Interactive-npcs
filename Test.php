@@ -1,7 +1,8 @@
 <?php
-require "Functions/EngineFunctions/Year.php";
+require_once "Classes/Beings/KindOfBeings/Human.php";
 
-while (TRUE)
-{
-Year();
-}
+
+
+$human = new human;
+$human->SelectById("beingId = 1");
+print_r($human);
