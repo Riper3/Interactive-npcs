@@ -12,5 +12,5 @@ class village extends app
  public $size;
  public $beingId;
 
-  protected $table = "villages";
+ public $table = "villages";
 }

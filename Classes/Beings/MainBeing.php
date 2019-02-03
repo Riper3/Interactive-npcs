@@ -16,5 +16,5 @@ class being extends app
  public $dexterity;
  public $stamina;
 
- protected $table = "beings";
+ public $table = "beings";
 }

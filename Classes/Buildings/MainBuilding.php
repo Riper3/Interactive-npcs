@@ -10,5 +10,5 @@ class building extends app
  public $beingId;
  public $size;
 
-  protected $table = "buildings";
+ public $table = "buildings";
 }
