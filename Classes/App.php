@@ -18,22 +18,22 @@ class app
 
      foreach ($vars as $name => $oldvalue)
      {
-     $this->$name = isset($vars[$name]) ? $vars[$name] : NULL;
+       $this->$name = isset($vars[$name]) ? $vars[$name] : NULL;
      }
   }
 
   public function DeleteById($id)
   {
-   require "Config/bbdd.php";
+     require "Config/bbdd.php";
 
-   $sqlfields = "SHOW COLUMNS FROM $this->table";
-   $idname = $conn->query($sqlfields)->fetch_array()[0];
+     $sqlfields = "SHOW COLUMNS FROM $this->table";
+     $idname = $conn->query($sqlfields)->fetch_array()[0];
 
-   $sql = "DELETE FROM $this->table WHERE $idname = $id";
+     $sql = "DELETE FROM $this->table WHERE $idname = $id";
 
-   $conn->query($sql);
+     $conn->query($sql);
 
-   $conn->close();
+     $conn->close();
   }
 
   public function Insert($object)
