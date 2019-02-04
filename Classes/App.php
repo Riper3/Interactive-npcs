@@ -22,12 +22,13 @@ class app
      }
   }
 
-  public function DeleteById($id)
+  public function Delete()
   {
      require "Config/bbdd.php";
 
      $sqlfields = "SHOW COLUMNS FROM $this->table";
      $idname = $conn->query($sqlfields)->fetch_array()[0];
+     $id = $this->$idname;
 
      $sql = "DELETE FROM $this->table WHERE $idname = $id";
 
