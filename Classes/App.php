@@ -36,14 +36,38 @@ class app
      $conn->close();
   }
 
-  public function Insert($object)
+  public function Insert()
   {
      require "Config/bbdd.php";
-     $arrayvalues = (array) $object;
+     $arrayvalues = (array) $this;
      unset($arrayvalues['table']);
      $columns = implode(", ",array_keys($arrayvalues));
      $values = implode("', '", $arrayvalues);
      $sql = "INSERT INTO $this->table ($columns) VALUES ('$values')";
+
+     $sqlfields = "SHOW COLUMNS FROM $this->table";
+     $idname = $conn->query($sqlfields)->fetch_array()[0];
+
+     $conn->query($sql);
+     $this->$idname = $conn->insert_id;
+
+     $conn->close();
+  }
+
+  public function Update()
+  {
+     require "Config/bbdd.php";
+     $arrayvalues = (array) $this;
+     unset($arrayvalues['table']);
+
+     $rawupdate = str_replace("&", "', ", http_build_query($arrayvalues));
+     $update = str_replace("=", "='", $rawupdate)."'";
+
+     $sqlfields = "SHOW COLUMNS FROM $this->table";
+     $idname = $conn->query($sqlfields)->fetch_array()[0];
+     $id = $this->$idname;
+
+     $sql = "UPDATE $this->table SET $update WHERE $idname = $id";
 
      $conn->query($sql);
 
