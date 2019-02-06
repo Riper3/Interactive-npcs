@@ -17,4 +17,5 @@ class being extends app
  public $stamina;
 
  public $table = "beings";
+ public $relations = ["buildings", "professions"];
 }

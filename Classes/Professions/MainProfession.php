@@ -11,4 +11,5 @@ class profession extends app
  public $schedule;
 
  public $table = "professions";
+ public $relations = ["beings", "professionstype", "zones"];
 }

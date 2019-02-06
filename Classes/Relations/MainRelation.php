@@ -8,5 +8,6 @@ class relation extends app
  public $reciverId;
  public $points;
 
-  public $table = "relations";
+ public $table = "relations";
+ public $relations = ["beings"];
 }

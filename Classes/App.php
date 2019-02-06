@@ -41,11 +41,11 @@ class app
   {
      require "Config/bbdd.php";
      $arrayvalues = (array) $this;
-     unset($arrayvalues['table']);
+     unset($arrayvalues['table'], $arrayvalues['relations']);
      $columns = implode(", ",array_keys($arrayvalues));
      $values = implode("', '", $arrayvalues);
      $sql = "INSERT INTO $this->table ($columns) VALUES ('$values')";
-
+     
      $sqlfields = "SHOW COLUMNS FROM $this->table";
      $idname = $conn->query($sqlfields)->fetch_array()[0];
 
@@ -59,7 +59,7 @@ class app
   {
      require "Config/bbdd.php";
      $arrayvalues = (array) $this;
-     unset($arrayvalues['table']);
+     unset($arrayvalues['table'], $arrayvalues['relations']);
 
      $rawupdate = str_replace("&", "', ", http_build_query($arrayvalues));
      $update = str_replace("=", "='", $rawupdate)."'";

@@ -11,4 +11,5 @@ class building extends app
  public $size;
 
  public $table = "buildings";
+ public $relations = ["beings", "villages"];
 }
