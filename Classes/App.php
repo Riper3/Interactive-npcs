@@ -8,8 +8,20 @@ class app
      $sqlfields = "SHOW COLUMNS FROM $this->table";
      $idname = $conn->query($sqlfields)->fetch_array()[0];
 
-     $sql = "SELECT * FROM $this->table WHERE $idname = $id";
-
+     if(!empty($this->relations))
+     {
+       $joins = NULL;
+       foreach ($this->relations as $join)
+       {
+         $sqljoin = "JOIN $join ON $this->table.$idname = $join.$idname";
+         $joins .= $sqljoin.' ';
+       }
+       $sql = "SELECT * FROM $this->table $joins WHERE $this->table.$idname = $id";
+     }
+     else
+     {
+       $sql = "SELECT * FROM $this->table $joins WHERE $this->table.$idname = $id";
+     }
      $result = $conn->query($sql)->fetch_object();
 
      $conn->close();
@@ -45,7 +57,7 @@ class app
      $columns = implode(", ",array_keys($arrayvalues));
      $values = implode("', '", $arrayvalues);
      $sql = "INSERT INTO $this->table ($columns) VALUES ('$values')";
-     
+
      $sqlfields = "SHOW COLUMNS FROM $this->table";
      $idname = $conn->query($sqlfields)->fetch_array()[0];
 
