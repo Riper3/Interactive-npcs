@@ -20,7 +20,7 @@ class app
      }
      else
      {
-       $sql = "SELECT * FROM $this->table $joins WHERE $this->table.$idname = $id";
+       $sql = "SELECT * FROM $this->table WHERE $this->table.$idname = $id";
      }
      $result = $conn->query($sql)->fetch_object();
 
