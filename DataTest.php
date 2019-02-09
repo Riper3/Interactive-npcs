@@ -6,6 +6,7 @@ require_once "Functions/CommonFunctions/GetBestProfession.php";
 require_once "Classes/Beings/KindOfBeings/Human.php";
 require_once "Classes/Buildings/KindOfBuilding/Shack.php";
 require_once "Classes/Villages/KindOfVillages/Romanicvillage.php";
+require_once "Classes/Storages/MainStorage.php";
 require_once "Classes/Professions/KindOfProfessions/Woodcuter.php";
 require_once "Classes/Professions/KindOfProfessions/Hunter.php";
 require_once "Classes/Professions/KindOfProfessions/Stoneminer.php";
@@ -22,22 +23,22 @@ while($i < 100)
   {
     $village = new romanicvillage();
     $village->NewVillage();
-    $villageid = NewInsertObject("villages", $village);
+    $village->Insert();
 
-    $storage = new stdClass();
+    $storage = new storage();
     $storage->ownertype = "village";
-    $storage->ownerId = $villageid;
-    NewInsertObject("storages", $storage);
+    $storage->ownerId = $village->villageId;
+    $storage->Insert();
 
     while($z < 5)
     {
       $typezones = ["forest", "stonemine", "foodplace"];
       $newzone = $typezones[rand(0,2)];
       $zone = new $newzone();
-      $zone->villageId = $villageid;
+      $zone->villageId = $village->villageId;
       $zone->name = $i . '-' . $z . '-'. $newzone;
       $zone->resourceamount = rand(10000,1000000);
-      $zoneid[$z] = NewInsertObject("zones", $zone);
+      $zone->Insert();
       $z++;
     }
     $x = 0;
@@ -46,16 +47,17 @@ while($i < 100)
 
   $human = new human();
   $human->NewHuman();
-  $beingid = NewInsertObject("beings", $human);
+  $human->Insert();
 
   $house = new shack();
-  $house->NewShack($beingid);
-  $house->villageId = $villageid;
-  $buildingid = NewInsertObject("buildings", $house);
+  $house->NewShack($human->beingId);
+  $house->villageId = $village->villageId;
+  $house->Insert();
 
-  $professionid = GetBestProfession($beingid);
+  GetBestProfession($human->beingId);
 
-  Update("beings", "buildingId='$buildingid'", "beingId='$beingid'");
+  $human->buildingId = $house->buildingId;
+  $human->Update();
 
   $x++;
   $i++;
