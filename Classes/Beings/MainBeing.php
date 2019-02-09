@@ -1,5 +1,5 @@
 <?php
-require (dirname(__DIR__).'/App.php');
+require_once (dirname(__DIR__).'/App.php');
 
 class being extends app
 {
