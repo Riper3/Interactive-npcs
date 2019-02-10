@@ -1,37 +1,35 @@
 <?php
-function Working($people)
+function Working($humanid)
 {
-  foreach ($people as $person)
-  {
-     $checkprofession = SelectOne("beings", "professionId" ,"beingId=$person[beingId]");
-     $villageid = SelectOneJoin("beings", "villageId", "buildings", "beings.beingId = buildings.beingId", "beings.beingId = $person[beingId]");
+       $human = new human;
+       $human->SelectById($humanid);
 
-     if($checkprofession != 0)
-     {
-       $skill = SelectOne("beings", $person['skill'], "beingId=$person[beingId]");
-       $stamina = SelectOne("beings", "stamina", "beingId=$person[beingId]");
+       $skill = SelectOne("professionstype", "skill", "professiontypeId = $human->professiontypeId");
 
-       $resourceamount = (($skill * 20) + ($stamina * 0.1));
+       $resourceamount = (($human->$skill * 0.2) + ($human->stamina * 0.1));
        $earnmoney = round($resourceamount * 4);
 
-       $zoneid = SelectOne("professions", "zoneId", "beingId=$person[beingId]");
-       $zoneresource = SelectOne("zones", "resourceamount", "zoneId=$zoneid");
-       $newresource = $zoneresource - $resourceamount;
+       $zone  = new zone;
+       $zone->SelectById($human->zoneId);
+       $newresource = $zone->resourceamount - $resourceamount;
        if($newresource > 0)
        {
-         Update("zones", "resourceamount=$newresource", "zoneId=$zoneid");
+         $zone->resourceamount = $newresource;
+         $zone->Update();
+         $resource = strtolower($zone->resource);
 
-         $currentmoney = SelectOne("beings", "money", "beingId=$person[beingId]");
-         $totalmoney = $currentmoney + $earnmoney;
-         Update("beings", "money=$totalmoney", "beingId=$person[beingId]");
+         $human->money = $human->money + $earnmoney;
+         $human->Update();
 
-         $currentmoney = SelectOne("villages", "money", "villageId=$villageid");
-         $totalmoney = $currentmoney - $earnmoney;
-         Update("villages", "money=$totalmoney", "villageId=$villageid");
+         $village = new village;
+         $village->SelectById($human->villageId);
+         $village->money = $village->money - $earnmoney;
+         $village->Update();
 
-         $currentresource = SelectOne("storages", "$person[resource]", "ownerId=$villageid");
-         $totalresource = $currentresource + $resourceamount;
-         Update("storages", "$person[resource]=$totalresource", "ownerId=$villageid");
+         $storage = new storage;
+         $storage->SelectById($village->storageId);
+         $storage->$resource = $storage->$resource + $resourceamount;
+         $storage->Update();
        }
        else
        {
@@ -39,11 +37,4 @@ function Working($people)
          DeleteOne("professions", "zoneId=$zoneid");
          DeleteOne("zones", "zoneId=$zoneid");
        }
-     }
-    else
-    {
-
-    }
-  }
-
 }
