@@ -10,7 +10,7 @@ function GetBestProfession($human)
       $bestskill = array_search(max($skills),$skills);
       $professionnew = SelectOne("professionstype", "name", "skill = '$bestskill'");
       $professiosource = SelectOne("professionstype", "resource", "skill = '$bestskill'");
-      echo "Hi";
+
       if (in_array($professiosource, array_column($avaliablezones, "resource")))
       {
         $profession = new $professionnew;
