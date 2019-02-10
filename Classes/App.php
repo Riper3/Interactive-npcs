@@ -92,7 +92,7 @@ class app
      $id = $this->$idname;
 
      $sql = "UPDATE $this->table SET $update WHERE $idname = $id";
-     
+
      $conn->query($sql);
      unset($sql);
 

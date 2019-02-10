@@ -1,33 +1,30 @@
 <?php
-function GetBestProfession($beingid)
+function GetBestProfession($human)
 {
-  $villageid = SelectOneJoin("beings", "villageId", "buildings", "beings.beingId = buildings.beingId", "beings.beingId = $beingid");
-  $skills = SelectAll("beings", "strength, intelligence, dexterity", "beingId = $beingid");
-  $avaliablezones = SelectAll("zones", "zoneId, resource", "villageId = $villageid");
-
+  $avaliablezones = SelectAll("zones", "zoneId, resource", "villageId = $human->villageId");
+  $skills = ["strength" => $human->strength, "intelligence" => $human->intelligence, "dexterity" => $human->dexterity];
   if(!empty($avaliablezones))
   {
     for ($i=0; $i=1;)
     {
-      $bestskill = array_search(max($skills[0]),$skills[0]);
+      $bestskill = array_search(max($skills),$skills);
       $professionnew = SelectOne("professionstype", "name", "skill = '$bestskill'");
       $professiosource = SelectOne("professionstype", "resource", "skill = '$bestskill'");
-
+      echo "Hi";
       if (in_array($professiosource, array_column($avaliablezones, "resource")))
       {
         $profession = new $professionnew;
         $q = array_search($professiosource, array_column($avaliablezones, "resource"));
         $newclass = "New".$professionnew;
-        $profession->$newclass($villageid, $avaliablezones[$q]["zoneId"], $beingid);
+        $profession->$newclass($human->villageId, $avaliablezones[$q]["zoneId"], $human->beingId);
         $profession->Insert();
-        Update("beings", "professionId='$profession->professionId'", "beingId='$beingid'");
         $i = 1;
 
         return $profession->professionId;
       }
       else
       {
-        unset($skills[0][$bestskill]);
+        unset($skills[$bestskill]);
       }
     }
   }
