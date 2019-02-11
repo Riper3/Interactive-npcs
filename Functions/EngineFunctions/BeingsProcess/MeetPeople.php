@@ -1,17 +1,17 @@
 <?php
 function MeetPeople($beingid, $reciverid)
 {
-  $checkrelation = SelectOne("relations", "relationId", "beingId=$beingid AND reciverId=$reciverid");
-  if(empty($checkrelation))
+  $relation = new relation;
+  $relation->SelectRelation($beingid, $reciverid);
+  if(empty($relation->relationId))
   {
-    $relation = new friend;
-    $relation->NewFriend($beingid, $reciverid);
-    NewInsertObject("relations", $relation);
+    $newrelation = new friend;
+    $newrelation->NewFriend($beingid, $reciverid);
+    $newrelation->Insert();
   }
   else
   {
-    $points = SelectOne("relations", "points", "beingId=$beingid AND reciverId=$reciverid");
-    $newpoints = $points + 1;
-    Update("relations", "points=$newpoints", "beingId=$beingid AND reciverId=$reciverid");
+    $relation->points = $relation->points + 1;
+    $relation->Update();
   }
 }
