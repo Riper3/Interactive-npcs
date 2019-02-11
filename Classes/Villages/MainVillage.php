@@ -7,6 +7,7 @@ class village extends app
  public $name;
  public $type;
  public $money;
+ public $storageId;
  public $population;
  public $level;
  public $size;
