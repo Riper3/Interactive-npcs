@@ -6,7 +6,7 @@ class human extends being
    public $name = "human one";
    public $type = "human";
 
-   function NewHuman()
+   public function NewHuman()
    {
     include_once "Functions/CommonFunctions/RandomName.php";
     $this->name = RandomName("names");
