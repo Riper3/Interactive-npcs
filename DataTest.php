@@ -28,6 +28,9 @@ while($i < 100)
     $storage->ownerId = $village->villageId;
     $storage->Insert();
 
+    $village->storageId = $storage->storageId;
+    $village->Update();
+
     while($z < 5)
     {
       $typezones = ["forest", "stonemine", "foodplace"];
