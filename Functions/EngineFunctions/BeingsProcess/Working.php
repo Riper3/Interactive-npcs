@@ -1,9 +1,7 @@
 <?php
-function Working($humanid)
+function Working($human)
 {
-       $human = new human;
-       $human->SelectById($humanid);
-
+       echo $human->beingId . '---';
        $skill = SelectOne("professionstype", "skill", "professiontypeId = $human->professiontypeId");
 
        $resourceamount = (($human->$skill * 0.2) + ($human->stamina * 0.1));
