@@ -71,8 +71,10 @@ class app
      }
 
      $result = $conn->query($sql);
+
+     $classname = get_class($this);
      $i = 0;
-     while ($row = $result->fetch_object())
+     while ($row = $result->fetch_object($classname))
      {
       $finalresult[$i] = $row;
       $i++;
