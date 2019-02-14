@@ -33,8 +33,6 @@ function Working($humanid)
        }
        else
        {
-         UpdateJoin("beings", "beings.professionId=0", "professions", "beings.beingId=professions.beingId", "zoneId=$zoneid");
-         DeleteOne("professions", "zoneId=$zoneid");
-         DeleteOne("zones", "zoneId=$zoneid");
+         $zone->EndZone();
        }
 }
