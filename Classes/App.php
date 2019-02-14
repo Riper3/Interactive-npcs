@@ -34,6 +34,58 @@ class app
      }
   }
 
+  public function SelectAll($condition = NULL)
+  {
+     require "Config/bbdd.php";
+
+     $sqlfields = "SHOW COLUMNS FROM $this->table";
+     $idname = $conn->query($sqlfields)->fetch_array()[0];
+
+     if(!empty($this->relations))
+     {
+       $joins = NULL;
+       foreach ($this->relations as $join)
+       {
+         $sqljoin = "JOIN $join ON $this->table.$idname = $join.$idname";
+         $joins .= $sqljoin.' ';
+       }
+       if(!empty($condition))
+       {
+         $sql = "SELECT * FROM $this->table $joins WHERE $condition";
+       }
+       else
+       {
+         $sql = "SELECT * FROM $this->table $joins";
+       }
+     }
+     else
+     {
+       if(!empty($condition))
+       {
+         $sql = "SELECT * FROM $this->table WHERE $condition";
+       }
+       else
+       {
+         $sql = "SELECT * FROM $this->table";
+       }
+     }
+
+     $result = $conn->query($sql);
+     $i = 0;
+     while ($row = $result->fetch_object())
+     {
+      $finalresult[$i] = $row;
+      $i++;
+     }
+
+     unset($sql);
+     $conn->close();
+
+     return $finalresult;
+
+
+  }
+
   public function Delete()
   {
      require "Config/bbdd.php";
