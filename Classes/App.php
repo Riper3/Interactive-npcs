@@ -83,7 +83,10 @@ class app
      unset($sql);
      $conn->close();
 
+     if(!empty($finalresult))
+     {
      return $finalresult;
+     }
 
 
   }
