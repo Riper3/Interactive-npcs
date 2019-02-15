@@ -6,13 +6,14 @@ require_once "Classes/Professions/KindOfProfessions/Stoneminer.php";
 
 function GetNewJob()
 {
-  $people = SelectAll("beings", "beingId", 'professionId=0');
+  $people = new human;
+  $freepeople = $people->SelectAll("beings.professionId = 0");
 
-  if(!empty($people))
+  if(!empty($freepeople))
   {
-    foreach ($people as $person)
+    foreach ($freepeople as $human)
     {
-      GetBestProfession($person["beingId"]);
+      GetBestProfession($human);
     }
   }
 }

@@ -1,9 +1,8 @@
 <?php
-function ImproveSkills($beingid)
+function ImproveSkills($human)
 {
-  $skills = SelectAll("beings", "strength, intelligence, dexterity", "beingId=$beingid")[0];
+  $skills = ["strength" => $human->strength, "intelligence" => $human->intelligence, "dexterity" => $human->dexterity];
   $bestskill = array_search(max($skills),$skills);
-  $rawskill = SelectOne('beings', "$bestskill", "beingId=$beingid");
-  $newskill = $rawskill + 0.1;
-  Update("beings", "$bestskill=$newskill", "beingId=$beingid");
+  $newskill = $human->$bestskill + 0.1;
+  $human->Update();
 }

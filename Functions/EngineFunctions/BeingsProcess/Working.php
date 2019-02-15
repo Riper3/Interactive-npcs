@@ -1,7 +1,8 @@
 <?php
-function Working($human)
+function Working($people)
 {
-       echo $human->beingId . '---';
+  foreach ($people as $human)
+  {
        $skill = SelectOne("professionstype", "skill", "professiontypeId = $human->professiontypeId");
 
        $resourceamount = (($human->$skill * 0.2) + ($human->stamina * 0.1));
@@ -33,4 +34,5 @@ function Working($human)
        {
          $zone->EndZone();
        }
+  }
 }

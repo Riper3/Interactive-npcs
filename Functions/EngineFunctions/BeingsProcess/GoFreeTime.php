@@ -10,23 +10,16 @@ function GoFreeTime($schedule)
     $freetime = $schedule + 1;
   }
 
-  $peoplefree = SelectAllJoin("professions", "beingId", "professionstype", "professions.professiontypeId = professionstype.professiontypeId", "schedule=$freetime");
+  $people = new human;
+  $freepeople = $people->SelectAll("schedule = $freetime");
 
   if($schedule == 1 || $schedule == 2)
   {
-    $stoppeople = SelectAll("beings", "beingId", "professionId=0");
+    $stoppeople = $people->SelectAll("beings.professionId = 0");
     if(!empty($stoppeople))
     {
-      $freepeople = array_merge($peoplefree, $stoppeople);
-      return $freepeople;
-    }
-    else
-    {
-      return $peoplefree;
+      $freepeople = array_merge($freepeople, $stoppeople);
     }
   }
-  else
-  {
-    return $peoplefree;
-  }
+    return $freepeople;
 }

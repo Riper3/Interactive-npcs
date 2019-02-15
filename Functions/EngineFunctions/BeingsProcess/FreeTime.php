@@ -3,21 +3,21 @@ function FreeTime($freepeople)
 {
   $peopleamount = count($freepeople);
 
-  foreach ($freepeople as $person)
+  foreach ($freepeople as $human)
   {
     $luckynumber = rand(0,100);
 
     if($luckynumber <= 30)
     {
       $otherbeing = rand(0, $peopleamount);
-      if($person['beingId'] != $otherbeing)
+      if($human->beingId != $otherbeing)
       {
-        MeetPeople($person['beingId'], $otherbeing);
+        MeetPeople($human->beingId, $otherbeing);
       }
     }
     else if($luckynumber >= 80)
     {
-      ImproveSkills($person['beingId']);
+      ImproveSkills($human);
     }
   }
 }
