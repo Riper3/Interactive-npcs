@@ -26,12 +26,15 @@ class app
      unset($sql);
      $conn->close();
 
-     $vars = get_object_vars($result);
-
-     foreach ($vars as $name => $oldvalue)
+     if(!empty($result))
      {
-       $this->$name = isset($vars[$name]) ? $vars[$name] : NULL;
-     }
+       $vars = get_object_vars($result);
+
+       foreach ($vars as $name => $oldvalue)
+       {
+         $this->$name = isset($vars[$name]) ? $vars[$name] : NULL;
+       }
+    }
   }
 
   public function SelectAll($condition = NULL)
