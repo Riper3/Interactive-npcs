@@ -13,10 +13,15 @@ function Day()
         {
             Working($workingpeople);
         }
-        
+
         if(!empty($freepeople))
         {
             FreeTime($freepeople);
+        }
+
+        if($i == 1)
+        {
+          GetNewJob();
         }
     }
   }

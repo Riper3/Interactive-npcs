@@ -15,7 +15,8 @@ function GoFreeTime($schedule)
 
   if($schedule == 1 || $schedule == 2)
   {
-    $stoppeople = $people->SelectAll("beings.professionId = 0");
+    unset($people->relations[1]);
+    $stoppeople = $people->SelectAll("professionId = 0");
     if(!empty($stoppeople))
     {
       $freepeople = array_merge($freepeople, $stoppeople);

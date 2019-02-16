@@ -7,8 +7,8 @@ require_once "Classes/Professions/KindOfProfessions/Stoneminer.php";
 function GetNewJob()
 {
   $people = new human;
-  $freepeople = $people->SelectAll("beings.professionId = 0");
-
+  unset($people->relations[1]);
+  $freepeople = $people->SelectAll("professionId = 0");
   if(!empty($freepeople))
   {
     foreach ($freepeople as $human)
