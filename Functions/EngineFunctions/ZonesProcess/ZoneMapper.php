@@ -2,20 +2,18 @@
 
 function ZoneMapper()
 {
-  $villages = SelectAllJoin("zones", "zones.villageId", "villages", "villages.villageId = zones.villageId");
-  array_multisort($villages, SORT_ASC);
-  $countzones = array_count_values(array_column($villages, 'villageId'));
-  $countallzones = -1;
-  foreach ($countzones as $realcount)
+  $zone = new zone;
+  $zones = $zone->SelectAll();
+  $countzones = array_count_values(array_column($zones, 'villageId'));
+  foreach ($countzones as $villageid => $realcount)
   {
-    $countallzones = $realcount + $countallzones;
     if($realcount < 5)
     {
-      $villageszones[] = $villages[$countallzones];
+      $villagesid[] = $villageid;
     }
   }
-  if(!empty($villageszones))
+  if(!empty($villagesid))
   {
-   return $villageszones;
+   return $villagesid;
   }
 }
