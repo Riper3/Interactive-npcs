@@ -6,7 +6,7 @@ function Day()
   {
     $workingpeople = Gowork($i);
     $freepeople = GoFreeTime($i);
-
+    
     for ($x=1; $x <= 8; $x++)
     {
         if(!empty($workingpeople))
@@ -18,11 +18,14 @@ function Day()
         {
             FreeTime($freepeople);
         }
+    }
 
-        if($i == 1)
-        {
-          GetNewJob();
-        }
+    if($i == 1)
+    {
+      $villagesid = ZoneMapper();
+      NewZone($villagesid);
+
+      GetNewJob();
     }
   }
 }
