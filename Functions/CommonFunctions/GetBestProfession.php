@@ -5,12 +5,12 @@ function GetBestProfession($human)
   $skills = ["strength" => $human->strength, "intelligence" => $human->intelligence, "dexterity" => $human->dexterity];
   if(!empty($avaliablezones))
   {
-    for ($i=0; $i=1;)
+    for ($i=0; $i<1;)
     {
       $bestskill = array_search(max($skills),$skills);
       $professionnew = SelectOne("professionstype", "name", "skill = '$bestskill'");
       $professiosource = SelectOne("professionstype", "resource", "skill = '$bestskill'");
-
+      
       if (in_array($professiosource, array_column($avaliablezones, "resource")))
       {
         $profession = new $professionnew;
@@ -18,9 +18,11 @@ function GetBestProfession($human)
         $newclass = "New".$professionnew;
         $profession->$newclass($human->villageId, $avaliablezones[$q]["zoneId"], $human->beingId);
         $profession->Insert();
-        $i = 1;
 
-        return $profession->professionId;
+        $human->professionId = $profession->professionId;
+        $human->Update();
+
+        $i = 1;
       }
       else
       {
