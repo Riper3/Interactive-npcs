@@ -3,36 +3,38 @@ function Working($people)
 {
   foreach ($people as $human)
   {
-       $skill = SelectOne("professionstype", "skill", "professiontypeId = $human->professiontypeId");
-
-       $resourceamount = (($human->$skill * 0.2) + ($human->stamina * 0.1));
-       $earnmoney = round($resourceamount * 4);
-
        $zone  = new zone;
        $zone->SelectById($human->zoneId);
-       $newresource = $zone->resourceamount - $resourceamount;
-       if($newresource > 0)
+       if(!empty($zone->zoneId))
        {
-         $zone->resourceamount = $newresource;
-         $zone->Update();
-         $resource = strtolower($zone->resource);
+         $skill = SelectOne("professionstype", "skill", "professiontypeId = $human->professiontypeId");
+         $resourceamount = (($human->$skill * 0.2) + ($human->stamina * 0.1));
+         $earnmoney = round($resourceamount * 4);
+         $newresource = $zone->resourceamount - $resourceamount;
 
-         $human->money = $human->money + $earnmoney;
-         $human->Update();
+         if($newresource > 0)
+         {
+           $zone->resourceamount = $newresource;
+           $zone->Update();
+           $resource = strtolower($zone->resource);
 
-         $village = new village;
-         $village->SelectById($human->villageId);
-         $village->money = $village->money - $earnmoney;
-         $village->Update();
+           $human->money = $human->money + $earnmoney;
+           $human->Update();
 
-         $storage = new storage;
-         $storage->SelectById($village->storageId);
-         $storage->$resource = $storage->$resource + $resourceamount;
-         $storage->Update();
-       }
-       else
-       {
-         $zone->EndZone();
+           $village = new village;
+           $village->SelectById($human->villageId);
+           $village->money = $village->money - $earnmoney;
+           $village->Update();
+
+           $storage = new storage;
+           $storage->SelectById($village->storageId);
+           $storage->$resource = $storage->$resource + $resourceamount;
+           $storage->Update();
+         }
+         else
+         {
+           $zone->EndZone();
+         }
        }
   }
 }
