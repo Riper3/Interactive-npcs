@@ -1,6 +1,5 @@
 <?php
 require_once "Functions/BbddFunctions/Select.php";
-require_once "Functions/CommonFunctions/GetBestProfession.php";
 require_once "Classes/Beings/KindOfBeings/Human.php";
 require_once "Classes/Buildings/KindOfBuilding/Shack.php";
 require_once "Classes/Villages/KindOfVillages/Romanicvillage.php";
@@ -56,7 +55,7 @@ while($i < 100)
   $house->Insert();
 
   $human->villageId = $village->villageId;
-  $human->professionId = GetBestProfession($human);
+  $human->GetBestProfession();
   $human->buildingId = $house->buildingId;
   $human->Update();
 
