@@ -60,5 +60,42 @@ class human extends being
       }
     }
    }
+   
+   public function Working()
+   {
+    $zone  = new zone;
+    $zone->SelectById($this->zoneId);
+    if(!empty($zone->zoneId))
+    {
+      $skill = SelectOne("professionstype", "skill", "professiontypeId = $this->professiontypeId");
+      $resourceamount = (($this->$skill * 0.2) + ($this->stamina * 0.1));
+      $earnmoney = round($resourceamount * 4);
+      $newresource = $zone->resourceamount - $resourceamount;
+
+      if($newresource > 0)
+      {
+       $zone->resourceamount = $newresource;
+       $zone->Update();
+       $resource = strtolower($zone->resource);
+
+       $this->money = $this->money + $earnmoney;
+       $this->Update();
+
+       $village = new village;
+       $village->SelectById($this->villageId);
+       $village->money = $village->money - $earnmoney;
+       $village->Update();
+
+       $storage = new storage;
+       $storage->SelectById($village->storageId);
+       $storage->$resource = $storage->$resource + $resourceamount;
+       $storage->Update();
+      }
+      else
+      {
+        $zone->EndZone();
+      }
+    }
+   }
 
 }

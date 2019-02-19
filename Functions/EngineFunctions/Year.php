@@ -10,7 +10,6 @@ require "Classes/Beings/KindOfBeings/Human.php";
 require "Classes/Villages/MainVillage.php";
 require "BeingsProcess/GoWork.php";
 require "BeingsProcess/GetNewJob.php";
-require "BeingsProcess/Working.php";
 require "BeingsProcess/GoFreeTime.php";
 require "BeingsProcess/FreeTime.php";
 require "BeingsProcess/MeetPeople.php";
