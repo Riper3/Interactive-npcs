@@ -13,7 +13,7 @@ function GetNewJob()
   {
     foreach ($freepeople as $human)
     {
-      GetBestProfession($human);
+      $human->GetBestProfession();
     }
   }
 }

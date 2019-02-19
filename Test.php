@@ -1,6 +1,6 @@
 <?php
 require "Functions/EngineFunctions/Year.php";
-while (TRUE)
-{
-Year();
-}
+
+$human = new human;
+$human->SelectById(2);
+$human->GetBestProfession();

@@ -17,7 +17,7 @@ function FreeTime($freepeople)
     }
     else if($luckynumber >= 80)
     {
-      ImproveSkills($human);
+      $human->ImproveSkills();
     }
   }
 }

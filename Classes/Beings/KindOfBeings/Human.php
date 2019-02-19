@@ -20,4 +20,46 @@ class human extends being
     $this->dexterity = rand(1, 100);
     $this->stamina = rand(1, 100);
    }
+
+   public function ImproveSkills()
+   {
+    $skills = ["strength" => $this->strength, "intelligence" => $this->intelligence, "dexterity" => $this->dexterity];
+    $bestskill = array_search(max($skills),$skills);
+    $this->$bestskill = $this->$bestskill + 0.1;
+    $this->Update();
+   }
+
+   public function GetBestProfession()
+   {
+    $avaliablezones = SelectAll("zones", "zoneId, resource", "villageId = $this->villageId");
+    $skills = ["strength" => $this->strength, "intelligence" => $this->intelligence, "dexterity" => $this->dexterity];
+    if(!empty($avaliablezones))
+    {
+      for ($i=0; $i<1;)
+      {
+        $bestskill = array_search(max($skills),$skills);
+        $professionnew = SelectOne("professionstype", "name", "skill = '$bestskill'");
+        $professiosource = SelectOne("professionstype", "resource", "skill = '$bestskill'");
+
+        if (in_array($professiosource, array_column($avaliablezones, "resource")))
+        {
+          $profession = new $professionnew;
+          $q = array_search($professiosource, array_column($avaliablezones, "resource"));
+          $newclass = "New".$professionnew;
+          $profession->$newclass($this->villageId, $avaliablezones[$q]["zoneId"], $this->beingId);
+          $profession->Insert();
+
+          $this->professionId = $profession->professionId;
+          $this->Update();
+
+          $i = 1;
+        }
+        else
+        {
+          unset($skills[$bestskill]);
+        }
+      }
+    }
+   }
+   
 }
