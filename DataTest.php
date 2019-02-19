@@ -1,5 +1,6 @@
 <?php
 require_once "Functions/BbddFunctions/Select.php";
+require_once "Functions/CommonFunctions/RandomName.php";
 require_once "Classes/Beings/KindOfBeings/Human.php";
 require_once "Classes/Buildings/KindOfBuilding/Shack.php";
 require_once "Classes/Villages/KindOfVillages/Romanicvillage.php";

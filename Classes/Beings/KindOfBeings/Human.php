@@ -8,7 +8,6 @@ class human extends being
 
    public function NewHuman()
    {
-    include_once "Functions/CommonFunctions/RandomName.php";
     $this->name = RandomName("names");
     $this->surname = RandomName("surnames");
     $genderoptions = array("male", "female");
@@ -61,5 +60,5 @@ class human extends being
       }
     }
    }
-   
+
 }
