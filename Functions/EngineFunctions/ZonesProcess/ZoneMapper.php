@@ -14,6 +14,9 @@ function ZoneMapper()
   }
   if(!empty($villagesid))
   {
-   return $villagesid;
+    foreach ($villagesid as $villageid)
+    {
+      $zone->NewZone($villageid);
+    }
   }
 }
