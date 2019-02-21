@@ -19,7 +19,7 @@ spl_autoload_register(function ($class) {
         unset($secondfolder[0], $secondfolder[1]);
         if(in_array($file, $secondfolder))
         {
-          require "Classes/Zones/KindOfZones/Forest.php";
+          require "Classes/".$oneclass."/".$firstfolder[2]."/".$file;
         }
       }
     }
