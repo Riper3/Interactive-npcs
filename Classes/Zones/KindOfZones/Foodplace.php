@@ -1,5 +1,5 @@
 <?php
-require_once (dirname(__DIR__).'/Mainzone.php');
+require_once (dirname(__DIR__).'/Zone.php');
 
 class foodplace extends zone
 {

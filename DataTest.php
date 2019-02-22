@@ -1,16 +1,7 @@
 <?php
 require_once "Functions/BbddFunctions/Select.php";
 require_once "Functions/CommonFunctions/RandomName.php";
-require_once "Classes/Beings/KindOfBeings/Human.php";
-require_once "Classes/Buildings/KindOfBuilding/Shack.php";
-require_once "Classes/Villages/KindOfVillages/Romanicvillage.php";
-require_once "Classes/Storages/MainStorage.php";
-require_once "Classes/Professions/KindOfProfessions/Woodcuter.php";
-require_once "Classes/Professions/KindOfProfessions/Hunter.php";
-require_once "Classes/Professions/KindOfProfessions/Stoneminer.php";
-require_once "Classes/Zones/KindOfZones/Forest.php";
-require_once "Classes/Zones/KindOfZones/Stonemine.php";
-require_once "Classes/Zones/KindOfZones/Foodplace.php";
+require_once "Config/autoloader.php";
 
 $i = 0;
 $x = 50;

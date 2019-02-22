@@ -1,7 +1,4 @@
 <?php
-require_once "Classes/Professions/KindOfProfessions/Woodcuter.php";
-require_once "Classes/Professions/KindOfProfessions/Hunter.php";
-require_once "Classes/Professions/KindOfProfessions/Stoneminer.php";
 
 function GetNewJob()
 {

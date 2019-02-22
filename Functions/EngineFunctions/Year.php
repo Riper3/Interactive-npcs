@@ -1,13 +1,6 @@
 <?php
 require "Functions/BbddFunctions/Select.php";
-require "Classes/Storages/Mainstorage.php";
-require "Classes/Zones/Mainzone.php";
-require "Classes/Zones/KindOfZones/Forest.php";
-require "Classes/Zones/KindOfZones/Stonemine.php";
-require "Classes/Zones/KindOfZones/Foodplace.php";
-require "Classes/Relations/KindOfRelations/Friend.php";
-require "Classes/Beings/KindOfBeings/Human.php";
-require "Classes/Villages/MainVillage.php";
+require "Config/autoloader.php";
 require "BeingsProcess/GoWork.php";
 require "BeingsProcess/GetNewJob.php";
 require "BeingsProcess/GoFreeTime.php";

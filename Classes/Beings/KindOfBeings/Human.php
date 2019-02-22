@@ -1,5 +1,5 @@
 <?php
-require (dirname(__DIR__).'/MainBeing.php');
+require (dirname(__DIR__).'/Being.php');
 
 class human extends being
 {
@@ -60,7 +60,7 @@ class human extends being
       }
     }
    }
-   
+
    public function Working()
    {
     $zone  = new zone;

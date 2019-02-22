@@ -1,5 +1,5 @@
 <?php
-require (dirname(__DIR__).'/MainBuilding.php');
+require (dirname(__DIR__).'/Building.php');
 
 class shack extends building
 {

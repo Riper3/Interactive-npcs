@@ -8,18 +8,19 @@ spl_autoload_register(function ($class) {
     {
       $firstfolder = scandir("Classes/".$oneclass);
       unset($firstfolder[0], $firstfolder[1]);
-      $checkfolders = strpos($firstfolder[2], '.php');
+      $subfolder = "KindOf".$oneclass;
+
       if(in_array($file, $firstfolder))
       {
         require "Classes/".$oneclass."/".$file;
       }
-      elseif($checkfolders === false)
+      elseif(in_array($subfolder, $firstfolder))
       {
-        $secondfolder = scandir("Classes/".$oneclass."/".$firstfolder[2]);
+        $secondfolder = scandir("Classes/".$oneclass."/".$subfolder);
         unset($secondfolder[0], $secondfolder[1]);
         if(in_array($file, $secondfolder))
         {
-          require "Classes/".$oneclass."/".$firstfolder[2]."/".$file;
+          require "Classes/".$oneclass."/".$subfolder."/".$file;
         }
       }
     }

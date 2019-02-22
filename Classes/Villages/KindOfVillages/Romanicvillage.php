@@ -1,5 +1,5 @@
 <?php
-require (dirname(__DIR__).'/MainVillage.php');
+require (dirname(__DIR__).'/Village.php');
 
 class romanicvillage extends village
 {
