@@ -6,6 +6,13 @@ require_once "Config/autoloader.php";
 $i = 0;
 $x = 50;
 $z = 0;
+
+$date = new date;
+$date->day = 1;
+$date->month = 1;
+$date->year = 1;
+$date->Insert();
+
 while($i < 100)
 {
   if($x == 50)

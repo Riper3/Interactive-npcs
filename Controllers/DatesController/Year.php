@@ -10,7 +10,14 @@ require "Controllers/ZonesController/ZoneMapper.php";
 require "Month.php";
 require "Functions/CommonFunctions/RandomName.php";
 
-function Year()
+function Year($date)
 {
-  Month();
+  for ($i=1; $i <= 12; $i++)
+  {
+      Month($date);
+  }
+  $date->day = 1;
+  $date->month = 1;
+  $date->year++;
+  $date->Update();
 }

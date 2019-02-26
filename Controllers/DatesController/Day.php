@@ -1,12 +1,15 @@
 <?php
 
-function Day()
+function Day($date)
 {
   for ($i=1; $i <= 3; $i++)
   {
 
     for ($x=1; $x <= 8; $x++)
     {
+        $date->hour++;
+        $date->Update();
+        
         $freepeople = GoFreeTime($i);
         if(!empty($freepeople))
         {
@@ -27,4 +30,7 @@ function Day()
       GetNewJob();
     }
   }
+  $date->hour = 0;
+  $date->day++;
+  $date->Update();
 }
