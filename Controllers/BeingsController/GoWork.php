@@ -4,8 +4,11 @@ function Gowork($schedule)
   $people = new human;
   $workingpeople = $people->SelectAll("schedule = $schedule");
 
-  foreach ($workingpeople as $human)
+  if(!empty($workingpeople))
   {
-    $human->Working();
+    foreach ($workingpeople as $human)
+    {
+      $human->Working();
+    }
   }
 }

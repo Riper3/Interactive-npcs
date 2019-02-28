@@ -27,8 +27,11 @@ function GoSleep($schedule)
     }
   }
 
-  foreach ($sleeppeople as $human)
+  if(!empty($sleeppeople))
   {
-    $human->Sleep();
+    foreach ($sleeppeople as $human)
+    {
+      $human->Sleep();
+    }
   }
 }

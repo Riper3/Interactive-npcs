@@ -4,11 +4,15 @@ require "Day.php";
 
 function Month($date)
 {
-  for ($i=1; $i <= 30; $i++)
+  while($date->day < 31)
   {
       Day($date);
   }
+  
   $date->day = 1;
   $date->month++;
-  $date->Update();
+  if($date->month <= 12)
+  {
+    $date->Update();
+  }
 }

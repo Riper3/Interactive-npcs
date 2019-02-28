@@ -4,12 +4,15 @@ function ZoneMapper()
 {
   $zone = new zone;
   $zones = $zone->SelectAll();
-  $countzones = array_count_values(array_column($zones, 'villageId'));
-  foreach ($countzones as $villageid => $realcount)
+  if(!empty($zones))
   {
-    if($realcount < 5)
+  $countzones = array_count_values(array_column($zones, 'villageId'));
+    foreach ($countzones as $villageid => $realcount)
     {
-      $villagesid[] = $villageid;
+      if($realcount < 5)
+      {
+        $villagesid[] = $villageid;
+      }
     }
   }
   if(!empty($villagesid))

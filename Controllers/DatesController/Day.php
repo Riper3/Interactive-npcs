@@ -2,33 +2,39 @@
 
 function Day($date)
 {
-  for ($i=1; $i <= 3; $i++)
-  {
-
-    for ($x=1; $x <= 8; $x++)
+    while($date->hour <= 24)
     {
-        $date->hour++;
-        $date->Update();
+        $schedule = ceil($date->hour/8);
 
-        $freepeople = GoFreeTime($i);
+        $freepeople = GoFreeTime($schedule);
         if(!empty($freepeople))
         {
             FreeTime($freepeople);
         }
 
-        Gowork($i);
+        Gowork($schedule);
 
-        GoSleep($i);
+        GoSleep($schedule);
+
+        if($schedule == 1)
+        {
+          ZoneMapper();
+
+          GetNewJob();
+        }
+        
+        $date->hour++;
+        if($date->hour <= 24)
+        {
+           $date->Update();
+        }
     }
 
-    if($i == 1)
+    $date->hour = 1;
+    $date->day++;
+    if($date->day <= 30)
     {
-      ZoneMapper();
-
-      GetNewJob();
+    $date->Update();
     }
-  }
-  $date->hour = 0;
-  $date->day++;
-  $date->Update();
+
 }

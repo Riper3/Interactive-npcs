@@ -13,11 +13,10 @@ require "Functions/CommonFunctions/RandomName.php";
 
 function Year($date)
 {
-  for ($i=1; $i <= 12; $i++)
+  while($date->month < 13)
   {
       Month($date);
   }
-  $date->day = 1;
   $date->month = 1;
   $date->year++;
   $date->Update();
