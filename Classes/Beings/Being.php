@@ -15,6 +15,8 @@ class being extends app
  public $intelligence;
  public $dexterity;
  public $stamina;
+ public $happiness;
+ public $borndate;
 
  public $table = "beings";
  public $relations = ["buildings", "professions"];

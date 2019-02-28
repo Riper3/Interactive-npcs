@@ -17,7 +17,11 @@ class human extends being
     $this->strength = rand(1, 100);
     $this->intelligence = rand(1, 100);
     $this->dexterity = rand(1, 100);
-    $this->stamina = rand(1, 100);
+    $this->stamina = 100;
+    $this->happiness = 100;
+    $day = rand(1,30);
+    $month = rand(1,12);
+    $this->borndate = '0-'.$month.'-'.$day;
    }
 
    public function ImproveSkills()
