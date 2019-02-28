@@ -22,7 +22,7 @@ function Day($date)
 
           GetNewJob();
         }
-        
+
         $date->hour++;
         if($date->hour <= 24)
         {
@@ -34,7 +34,7 @@ function Day($date)
     $date->day++;
     if($date->day <= 30)
     {
-    $date->Update();
+      $date->Update();
     }
 
 }
