@@ -4,6 +4,7 @@ require "Config/autoloader.php";
 require "Controllers/BeingsController/GoWork.php";
 require "Controllers/BeingsController/GetNewJob.php";
 require "Controllers/BeingsController/GoFreeTime.php";
+require "Controllers/BeingsController/GoSleep.php";
 require "Controllers/BeingsController/FreeTime.php";
 require "Controllers/BeingsController/MeetPeople.php";
 require "Controllers/ZonesController/ZoneMapper.php";

@@ -9,18 +9,16 @@ function Day($date)
     {
         $date->hour++;
         $date->Update();
-        
+
         $freepeople = GoFreeTime($i);
         if(!empty($freepeople))
         {
             FreeTime($freepeople);
         }
 
-        $workingpeople = Gowork($i);
-        if(!empty($workingpeople))
-        {
-            Working($workingpeople);
-        }
+        Gowork($i);
+
+        GoSleep($i);
     }
 
     if($i == 1)

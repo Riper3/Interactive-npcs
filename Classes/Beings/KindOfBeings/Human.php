@@ -71,8 +71,9 @@ class human extends being
     $zone->SelectById($this->zoneId);
     if(!empty($zone->zoneId))
     {
+      $motivation = rand(1,5);
       $skill = SelectOne("professionstype", "skill", "professiontypeId = $this->professiontypeId");
-      $resourceamount = (($this->$skill * 0.2) + ($this->stamina * 0.1));
+      $resourceamount = ($this->$skill * 0.2) * $motivation;
       $earnmoney = round($resourceamount * 4);
       $newresource = $zone->resourceamount - $resourceamount;
 
@@ -82,6 +83,7 @@ class human extends being
        $zone->Update();
        $resource = strtolower($zone->resource);
 
+       $this->stamina = $this->stamina - $motivation;
        $this->money = $this->money + $earnmoney;
        $this->Update();
 
@@ -100,6 +102,20 @@ class human extends being
         $zone->EndZone();
       }
     }
+   }
+
+   public function Sleep()
+   {
+     if($this->stamina < 100)
+     {
+     $sleepwell = rand(2,10);
+     $this->stamina = $sleepwell + $this->stamina;
+     if($this->stamina > 100)
+     {
+       $this->stamina = 100;
+     }
+     $this->Update();
+     }
    }
 
 }
