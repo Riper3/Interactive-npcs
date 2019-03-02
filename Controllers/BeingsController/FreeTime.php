@@ -1,18 +1,23 @@
 <?php
 function FreeTime($freepeople)
 {
-  $peopleamount = count($freepeople);
-
   foreach ($freepeople as $human)
   {
     $luckynumber = rand(0,100);
 
     if($luckynumber <= 30)
     {
-      $otherbeing = rand(0, $peopleamount);
-      if($human->beingId != $otherbeing)
+      $villagepeople = FilterMultiArray($freepeople, "villageId", $human->villageId);
+      $peopleamount = count($villagepeople) - 1;
+
+      $beingnumber = rand(0, $peopleamount);
+      $otherbeingid = $villagepeople[$beingnumber]->beingId;
+
+      $checkrelation = new relation;
+      $checkrelation->SelectRelation($human->beingId, $otherbeingid);
+      if($human->beingId != $otherbeingid && empty($checkrelation->relationId))
       {
-        MeetPeople($human->beingId, $otherbeing);
+        MeetUnknownPeople($human->beingId, $otherbeingid);
       }
     }
     else if($luckynumber >= 80)
