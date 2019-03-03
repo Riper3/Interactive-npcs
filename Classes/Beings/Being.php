@@ -20,4 +20,30 @@ class being extends app
 
  public $table = "beings";
  public $relations = ["buildings", "professions"];
+
+ public function GetElement()
+ {
+   $month = explode("-", $this->borndate)[1];
+   
+   if($month <= 3)
+   {
+   $this->element = "fire";
+   }
+
+   if($month >= 4 && $month <= 6)
+   {
+   $this->element = "air";
+   }
+
+   if($month >= 7 && $month <= 9)
+   {
+   $this->element = "earth";
+   }
+
+   if($month >= 10 && $month <= 12)
+   {
+   $this->element = "water";
+   }
+ }
+
 }
