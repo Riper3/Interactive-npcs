@@ -13,11 +13,17 @@ function FreeTime($freepeople)
       $beingnumber = rand(0, $peopleamount);
       $otherbeingid = $villagepeople[$beingnumber]->beingId;
 
-      $checkrelation = new relation;
-      $checkrelation->SelectRelation($human->beingId, $otherbeingid);
-      if($human->beingId != $otherbeingid && empty($checkrelation->relationId))
+      $relation = new relation;
+      $relation->SelectRelation($human->beingId, $otherbeingid);
+      if($human->beingId != $otherbeingid && empty($relation->relationId))
       {
-        MeetUnknownPeople($human->beingId, $otherbeingid);
+        $relation->MeetUnknownPeople($human->beingId, $otherbeingid);
+      }
+      else if(!empty($relation->relationId))
+      {
+        $relation = new $relation->type;
+        $relation->SelectRelation($human->beingId, $otherbeingid);
+        $relation->Talk();
       }
     }
     else if($luckynumber >= 80)

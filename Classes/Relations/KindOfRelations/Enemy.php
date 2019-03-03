@@ -1,14 +1,14 @@
 <?php
 require_once (dirname(__DIR__).'/Relation.php');
 
-class friend extends relation
+class enemy extends relation
 {
-  public $type = "friend";
-  public $points = 15;
+  public $type = "enemy";
+  public $points = -40;
 
   public function Talk()
   {
-    $this->points++;
+    $this->points--;
     $this->Update();
   }
 

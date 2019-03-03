@@ -5,12 +5,11 @@ class relation extends app
 {
  public $relationId;
  public $beingId;
- public $relationtypeId;
+ public $type;
  public $reciverId;
  public $points;
 
  public $table = "relations";
- public $relations = ["beings"];
 
  public function SelectRelation($beingid, $reciverId)
  {
@@ -32,4 +31,18 @@ class relation extends app
      }
    }
  }
+
+ public function MeetUnknownPeople($beingid, $reciverid)
+ {
+   $newrelation = new acquaintance;
+   $newrelation->beingId = $beingid;
+   $newrelation->reciverId = $reciverid;
+   $newrelation->Insert();
+
+   $corelation = new acquaintance;
+   $corelation->beingId = $reciverid;
+   $corelation->reciverId = $beingid;
+   $corelation->Insert();
+ }
+
 }

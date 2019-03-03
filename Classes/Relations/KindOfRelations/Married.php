@@ -1,10 +1,10 @@
 <?php
 require_once (dirname(__DIR__).'/Relation.php');
 
-class friend extends relation
+class married extends relation
 {
-  public $type = "friend";
-  public $points = 15;
+  public $type = "married";
+  public $points = 70;
 
   public function Talk()
   {
