@@ -18,7 +18,7 @@ while($i < 100)
   if($x == 50)
   {
     $village = new romanicvillage();
-    $village->NewVillage();
+    $village->name = RandomName();
     $village->Insert();
 
     $storage = new storage();
@@ -35,7 +35,7 @@ while($i < 100)
       $newzone = $typezones[rand(0,2)];
       $zone = new $newzone();
       $zone->villageId = $village->villageId;
-      $zone->name = $i . '-' . $z . '-'. $newzone;
+      $zone->name = RandomName();
       $zone->resourceamount = rand(10000,1000000);
       $zone->Insert();
       $z++;
