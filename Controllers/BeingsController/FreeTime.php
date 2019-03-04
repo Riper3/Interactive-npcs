@@ -23,7 +23,7 @@ function FreeTime($freepeople)
       {
         $relation = new $relation->type;
         $relation->SelectRelation($human->beingId, $otherbeingid);
-        $relation->Talk($human, $villagepeople[$beingnumber]);
+        $relation->Talk();
       }
     }
     else if($luckynumber >= 80)
