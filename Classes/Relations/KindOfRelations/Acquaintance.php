@@ -8,14 +8,10 @@ class acquaintance extends relation
 
   public function Talk()
   {
-    $human = new human;
-    $human->SelectById($this->beingId);
+    $persons = $this->Interaction();
 
-    $reciver = new human;
-    $reciver->SelectById($this->reciverId);
-
-    $human->GetElement();
-    $reciver->GetElement();
+    $human = $persons[0];
+    $reciver = $persons[1];
 
     if($human->element == $reciver->element)
     {

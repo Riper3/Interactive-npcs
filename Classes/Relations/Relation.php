@@ -32,6 +32,20 @@ class relation extends app
    }
  }
 
+ public function Interaction()
+ {
+   $human = new human;
+   $human->SelectById($this->beingId);
+
+   $reciver = new human;
+   $reciver->SelectById($this->reciverId);
+
+   $human->GetElement();
+   $reciver->GetElement();
+
+   return [$human, $reciver];
+ }
+
  public function MeetUnknownPeople($beingid, $reciverid)
  {
    $newrelation = new acquaintance;
