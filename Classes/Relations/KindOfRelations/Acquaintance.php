@@ -40,6 +40,8 @@ class acquaintance extends relation
       $this->points = $this->points + rand(-3, 0);
     }
 
+    $this->RefreshRelation();
+
     $this->Update();
   }
 

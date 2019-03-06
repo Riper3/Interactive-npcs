@@ -46,6 +46,31 @@ class relation extends app
    return [$human, $reciver];
  }
 
+ public function RefreshRelation()
+ {
+   switch (true)
+   {
+     case $this->points >= 70:
+         $this->type = "married";
+         break;
+     case $this->points >= 50:
+         $this->type = "partner";
+         break;
+     case $this->points >= 30:
+         $this->type = "closefriend";
+         break;
+     case $this->points >= 15:
+         $this->type = "friend";
+         break;
+     case $this->points >= 0:
+         $this->type = "acquaintance";
+         break;
+     case $this->points >= -50:
+         $this->type = "enemy";
+         break;
+   }
+ }
+
  public function MeetUnknownPeople($beingid, $reciverid)
  {
    $newrelation = new acquaintance;
