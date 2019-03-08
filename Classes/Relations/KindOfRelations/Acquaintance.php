@@ -22,13 +22,20 @@ class acquaintance extends relation
       $this->points = $this->points + rand(-3, 0);
     }
 
-    if($human->professiontypeId == $reciver->professiontypeId)
+    if($human->professionId != 0)
     {
-      $this->points = $this->points + rand(2, 4);
+      if($human->professiontypeId == $reciver->professiontypeId)
+      {
+        $this->points = $this->points + rand(2, 4);
+      }
+      else
+      {
+        $this->points = $this->points + rand(-1, 1);
+      }
     }
     else
     {
-      $this->points = $this->points + rand(-1, 1);
+      $this->points = $this->points + rand(1, 2);
     }
 
     if($human->money < $reciver->money)

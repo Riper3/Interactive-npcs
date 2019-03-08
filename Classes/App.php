@@ -8,27 +8,36 @@ class app
      $sqlfields = "SHOW COLUMNS FROM $this->table";
      $idname = $conn->query($sqlfields)->fetch_array()[0];
 
+     $sql = "SELECT * FROM $this->table WHERE $idname = $id";
+     $object = $conn->query($sql)->fetch_object();
+
      if(!empty($this->relations))
      {
        $joins = NULL;
        foreach ($this->relations as $join)
        {
-         $sqljoin = "JOIN $join ON $this->table.$idname = $join.$idname";
-         $joins .= $sqljoin.' ';
+         $sqlfields = "SHOW COLUMNS FROM $join";
+         $idjoin = $conn->query($sqlfields)->fetch_array()[0];
+         $idvalue = $object->$idjoin;
+
+         $checkjoin = "SELECT $idjoin FROM $join WHERE $idjoin = $idvalue";
+
+         if($conn->query($checkjoin)->num_rows == 1)
+         {
+           $sqljoin = "JOIN $join ON $this->table.$idjoin = $join.$idjoin";
+           $joins .= $sqljoin.' ';
+         }
        }
        $sql = "SELECT * FROM $this->table $joins WHERE $this->table.$idname = $id";
+       $object = $conn->query($sql)->fetch_object();
      }
-     else
-     {
-       $sql = "SELECT * FROM $this->table WHERE $this->table.$idname = $id";
-     }
-     $result = $conn->query($sql)->fetch_object();
+
      unset($sql);
      $conn->close();
 
-     if(!empty($result))
+     if(!empty($object))
      {
-       $vars = get_object_vars($result);
+       $vars = get_object_vars($object);
 
        foreach ($vars as $name => $oldvalue)
        {

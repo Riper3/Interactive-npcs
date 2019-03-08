@@ -65,7 +65,7 @@ class relation extends app
      case $this->points >= 0:
          $this->type = "acquaintance";
          break;
-     case $this->points >= -50:
+     case $this->points <= -50:
          $this->type = "enemy";
          break;
    }
