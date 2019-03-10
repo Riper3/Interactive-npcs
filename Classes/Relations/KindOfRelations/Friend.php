@@ -4,7 +4,6 @@ require_once (dirname(__DIR__).'/Relation.php');
 class friend extends relation
 {
   public $type = "friend";
-  public $points = 15;
 
   public function Talk()
   {
@@ -21,9 +20,8 @@ class friend extends relation
     {
       $this->points = $this->points - rand(1, 3);
     }
-    $this->RefreshRelation();
 
-    $this->Update();
+    $this->RefreshRelation();
   }
 
 }

@@ -4,7 +4,6 @@ require_once (dirname(__DIR__).'/Relation.php');
 class partner extends relation
 {
   public $type = "partner";
-  public $points = 50;
 
   public function Talk()
   {
@@ -21,9 +20,14 @@ class partner extends relation
     {
       $this->points = $this->points - rand(1, 3);
     }
+
     $this->RefreshRelation();
 
-    $this->Update();
+    if($this->type == "married")
+    {
+      unset($human->element, $reciver->element);
+      $human->MoveHouse($reciver);
+    }
   }
 
 }

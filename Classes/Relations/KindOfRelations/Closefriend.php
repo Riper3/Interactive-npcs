@@ -4,7 +4,6 @@ require_once (dirname(__DIR__).'/Relation.php');
 class closefriend extends relation
 {
   public $type = "closefriend";
-  public $points = 30;
 
   public function Talk()
   {
@@ -21,9 +20,8 @@ class closefriend extends relation
     {
       $this->points = $this->points - rand(1, 3);
     }
-    $this->RefreshRelation();
 
-    $this->Update();
+    $this->RefreshRelation();
   }
 
 }

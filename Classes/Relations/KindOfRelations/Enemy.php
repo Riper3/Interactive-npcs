@@ -9,7 +9,7 @@ class enemy extends relation
   public function Talk()
   {
     $this->points--;
-    $this->Update();
+    $this->RefreshRelation();
   }
 
 }

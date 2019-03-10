@@ -48,8 +48,6 @@ class acquaintance extends relation
     }
 
     $this->RefreshRelation();
-
-    $this->Update();
   }
 
 }
