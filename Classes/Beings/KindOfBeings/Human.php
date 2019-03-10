@@ -118,4 +118,29 @@ class human extends being
      }
    }
 
+   public function MoveHouse($reciver)
+   {
+     if($this->size >= $reciver->size)
+     {
+       $newhouse = $this->buildingId;
+       $oldhouse = $reciver->buildingId;
+     }
+     else
+     {
+       $newhouse = $reciver->buildingId;
+       $oldhouse = $this->buildingId;
+     }
+
+     $this->buildingId = $newhouse;
+     $reciver->buildingId = $newhouse;
+
+     $oldbuilding = new building;
+     $oldbuilding->SelectById($oldhouse);
+     $oldbuilding->beingId = 0;
+
+     $oldbuilding->Update();
+     $this->Update();
+     $reciver->Update();
+   }
+
 }
