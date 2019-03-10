@@ -4,7 +4,7 @@ require_once (dirname(__DIR__).'/Relation.php');
 class enemy extends relation
 {
   public $type = "enemy";
-  public $points = -40;
+  public $points = -50;
 
   public function Talk()
   {
