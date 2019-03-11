@@ -6,6 +6,6 @@ class romanicvillage extends village
  public $type = "romanic";
  public $money = 10000;
  public $level = 1;
- public $size = 100;
- 
+ public $villagesize = 100;
+
 }

@@ -8,7 +8,7 @@ class building extends app
  public $number;
  public $villageId;
  public $beingId;
- public $size;
+ public $buildingsize;
 
  public $table = "buildings";
  public $relations = ["beings", "villages"];

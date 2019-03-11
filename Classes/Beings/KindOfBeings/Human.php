@@ -120,7 +120,7 @@ class human extends being
 
    public function MoveHouse($reciver)
    {
-     if($this->size >= $reciver->size)
+     if($this->buildingsize >= $reciver->buildingsize)
      {
        $newhouse = $this->buildingId;
        $oldhouse = $reciver->buildingId;

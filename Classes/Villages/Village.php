@@ -10,7 +10,7 @@ class village extends app
  public $storageId;
  public $population;
  public $level;
- public $size;
+ public $villagesize;
  public $beingId;
 
  public $table = "villages";
