@@ -34,28 +34,34 @@ class human extends being
 
    public function GetBestProfession()
    {
-    $avaliablezones = SelectAll("zones", "zoneId, resource", "villageId = $this->villageId");
+    $works = new profession;
+    unset($works->relations[0]);
+    $avaiableworks = $works->SelectAll("beingId = 0 AND villageId = $this->villageId");
+
     $skills = ["strength" => $this->strength, "intelligence" => $this->intelligence, "dexterity" => $this->dexterity];
-    if(!empty($avaliablezones))
+
+    if(!empty($avaiableworks))
     {
       for ($i=0; $i<1;)
       {
         $bestskill = array_search(max($skills),$skills);
-        $professionnew = SelectOne("professionstype", "name", "skill = '$bestskill'");
-        $professiosource = SelectOne("professionstype", "resource", "skill = '$bestskill'");
 
-        if (in_array($professiosource, array_column($avaliablezones, "resource")))
+        if (in_array($bestskill, array_column($avaiableworks, "skill")))
         {
-          $profession = new $professionnew;
-          $q = array_search($professiosource, array_column($avaliablezones, "resource"));
-          $newclass = "New".$professionnew;
-          $profession->$newclass($this->villageId, $avaliablezones[$q]["zoneId"], $this->beingId);
-          $profession->Insert();
+          foreach ($avaiableworks as $avaiablework)
+          {
+            if($bestskill == $avaiablework->skill)
+            {
+              $avaiablework->beingId = $this->beingId;
+              $avaiablework->Update();
+              
+              $this->professionId = $avaiablework->professionId;
+              $this->Update();
 
-          $this->professionId = $profession->professionId;
-          $this->Update();
-
-          $i = 1;
+              $i = 1;
+              break;
+            }
+          }
         }
         else
         {
