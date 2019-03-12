@@ -58,7 +58,10 @@ class app
        $joins = NULL;
        foreach ($this->relations as $join)
        {
-         $sqljoin = "JOIN $join ON $this->table.$idname = $join.$idname";
+         $sqlfields = "SHOW COLUMNS FROM $join";
+         $idjoin = $conn->query($sqlfields)->fetch_array()[0];
+
+         $sqljoin = "JOIN $join ON $this->table.$idjoin = $join.$idjoin";
          $joins .= $sqljoin.' ';
        }
        if(!empty($condition))
@@ -81,7 +84,7 @@ class app
          $sql = "SELECT * FROM $this->table";
        }
      }
-
+     
      $result = $conn->query($sql);
 
      $classname = get_class($this);
