@@ -25,7 +25,6 @@ class partner extends relation
 
     if($this->type == "married")
     {
-      unset($human->element, $reciver->element);
       $human->MoveHouse($reciver);
     }
   }
