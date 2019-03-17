@@ -24,6 +24,7 @@ while($i < 100)
     $storage = new storage();
     $storage->ownertype = "village";
     $storage->ownerId = $village->villageId;
+    $storage->money = 50.000;
     $storage->Insert();
 
     $village->storageId = $storage->storageId;
