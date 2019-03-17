@@ -84,9 +84,9 @@ class app
          $sql = "SELECT * FROM $this->table";
        }
      }
-     
-     $result = $conn->query($sql);
 
+     $result = $conn->query($sql);
+     
      $classname = get_class($this);
      $i = 0;
      while ($row = $result->fetch_object($classname))

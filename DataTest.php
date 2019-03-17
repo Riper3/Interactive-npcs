@@ -55,7 +55,6 @@ while($i < 100)
   $house->Insert();
 
   $human->villageId = $village->villageId;
-  $human->GetBestProfession();
   $human->buildingId = $house->buildingId;
   $human->Update();
 

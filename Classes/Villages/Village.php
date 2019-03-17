@@ -65,7 +65,7 @@ class village extends app
 
 
    $this->population = $countpeople;
-   $this->unemploymentrate = ($countunemploymentpeople * 100)  / $countpeople;
+   $this->unemploymentrate = round(($countunemploymentpeople * 100)  / $countpeople);
    $this->zones = $zones;
  }
 
@@ -73,22 +73,51 @@ class village extends app
  {
    foreach ($this->needresource as $resource)
    {
+     $x = 0;
+     $countzones = count($this->zones);
+
      foreach ($this->zones as $zone)
      {
        if($zone->resource == $resource["resource"])
        {
-         $zoneid = $zone->zoneId;
+         $job = SelectOne("professionstype", "name", "resource = '$resource[resource]'");
+         $jobtypeid = SelectOne("professionstype", "professiontypeId", "resource = '$resource[resource]'");
+
+         $profession = new profession;
+         unset($profession->relations[0]);
+         $professions = $profession->SelectAll("villageId = $this->villageId AND professionstype.professiontypeId = $jobtypeid AND professions.beingId = 0");
+
+         if(!empty($professions))
+         {
+           $availableprofessions = count($professions);
+           $newprofessions = $resource["people"] - $availableprofessions;
+         }
+         else
+         {
+           $newprofessions = $resource["people"];
+         }
+
+         if($newprofessions > 0)
+         {
+           for ($i=0; $i < $newprofessions; $i++)
+           {
+           $profession = new $job;
+           $profession->villageId = $this->villageId;
+           $profession->zoneId = $zone->zoneId;
+           $profession->schedule = rand(1,3);
+           $profession->Insert();
+           }
+         }
          break;
        }
+
+       if($x == $countzones - 1)
+       {
+         //Here the village will post a offer to buy the resource
+       }
+
+      $x++;
      }
-
-     $job = SelectOne("professionstype", "name", "resource = '$resource[resource]'");
-
-     $profession = new $job;
-     $profession->villageId = $this->villageId;
-     $profession->zoneId = $zoneid;
-     $profession->schedule = 1;
-     $profession->Insert();
    }
  }
 

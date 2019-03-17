@@ -20,6 +20,8 @@ function Day($date)
         {
           ZoneMapper();
 
+          OfferJob();
+
           GetNewJob();
         }
 

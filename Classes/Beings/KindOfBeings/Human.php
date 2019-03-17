@@ -93,6 +93,9 @@ class human extends being
        $this->money = $this->money + $earnmoney;
        $this->Update();
 
+       $village = new village;
+       $village->SelectById($this->villageId);
+
        $storage = new storage;
        $storage->SelectById($village->storageId);
        $storage->$resource = $storage->$resource + $resourceamount;

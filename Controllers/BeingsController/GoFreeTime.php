@@ -17,9 +17,13 @@ function GoFreeTime($schedule)
   {
     unset($people->relations[1]);
     $stoppeople = $people->SelectAll("professionId = 0");
-    if(!empty($stoppeople))
+    if(!empty($stoppeople) && !empty($freepeople))
     {
       $freepeople = array_merge($freepeople, $stoppeople);
+    }
+    elseif (!empty($stoppeople))
+    {
+      $freepeople = $stoppeople;
     }
   }
     return $freepeople;

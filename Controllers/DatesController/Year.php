@@ -6,6 +6,7 @@ require "Controllers/BeingsController/GetNewJob.php";
 require "Controllers/BeingsController/GoFreeTime.php";
 require "Controllers/BeingsController/GoSleep.php";
 require "Controllers/BeingsController/FreeTime.php";
+require "Controllers/VillagesController/OfferJob.php";
 require "Controllers/ZonesController/ZoneMapper.php";
 require "Month.php";
 require "Functions/CommonFunctions/RandomName.php";
