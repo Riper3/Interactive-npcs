@@ -3,6 +3,6 @@ require_once (dirname(__DIR__).'/Zone.php');
 
 class forest extends zone
 {
-  public $type = "Forest";
-  public $resource = "Wood";
+  public $type = "forest";
+  public $resource = "wood";
 }
