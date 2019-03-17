@@ -47,17 +47,20 @@ class village extends app
 
    if($this->wood < $minresources)
    {
-     $this->needresource[] = "wood";
+     $peopleneeded = ($minresources - $this->wood) / 100;
+     $this->needresource[] = ["resource" => "wood", "people" => $peopleneeded];
    }
 
    if($this->stone < $minresources)
    {
-   $this->needresource[] = "stone";
+     $peopleneeded = ($minresources - $this->stone) / 100;
+     $this->needresource []= ["resource" => "stone", "people" => $peopleneeded];
    }
 
    if($this->food < $minresources)
    {
-   $this->needresource[] = "food";
+     $peopleneeded = ($minresources - $this->food) / 100;
+     $this->needresource[] = ["resource" => "food", "people" => $peopleneeded];
    }
 
 
@@ -65,4 +68,28 @@ class village extends app
    $this->unemploymentrate = ($countunemploymentpeople * 100)  / $countpeople;
    $this->zones = $zones;
  }
+
+ public function PostJobs()
+ {
+   foreach ($this->needresource as $resource)
+   {
+     foreach ($this->zones as $zone)
+     {
+       if($zone->resource == $resource["resource"])
+       {
+         $zoneid = $zone->zoneId;
+         break;
+       }
+     }
+
+     $job = SelectOne("professionstype", "name", "resource = '$resource[resource]'");
+
+     $profession = new $job;
+     $profession->villageId = $this->villageId;
+     $profession->zoneId = $zoneid;
+     $profession->schedule = 1;
+     $profession->Insert();
+   }
+ }
+
 }
