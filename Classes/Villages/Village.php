@@ -22,10 +22,47 @@ class village extends app
    $villagepeople = $people->SelectAll("villageId = $this->villageId");
    $unemploymentpeople = $people->SelectAll("villageId = $this->villageId AND professionId = 0");
 
-   $countpeople = count($villagepeople);
+   $zone = new zone;
+   $zones = $zone->SelectAll("villageId = $this->villageId");
+
+   if(!empty($villagepeople))
+   {
+     $countpeople = count($villagepeople);
+   }
+   else
+   {
+     $countpeople = 0;
+   }
+
+   if(!empty($unemploymentpeople))
+   {
    $countunemploymentpeople = count($unemploymentpeople);
+   }
+   else
+   {
+     $countunemploymentpeople = 0;
+   }
+
+   $minresources = $this->level * 5000;
+
+   if($this->wood < $minresources)
+   {
+     $this->needresource[] = "wood";
+   }
+
+   if($this->stone < $minresources)
+   {
+   $this->needresource[] = "stone";
+   }
+
+   if($this->food < $minresources)
+   {
+   $this->needresource[] = "food";
+   }
+
 
    $this->population = $countpeople;
    $this->unemploymentrate = ($countunemploymentpeople * 100)  / $countpeople;
+   $this->zones = $zones;
  }
 }
