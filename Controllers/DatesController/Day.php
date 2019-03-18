@@ -2,6 +2,8 @@
 
 function Day($date)
 {
+    $x = 3;
+
     while($date->hour <= 24)
     {
         $schedule = ceil($date->hour/8);
@@ -16,16 +18,22 @@ function Day($date)
 
         GoSleep($schedule);
 
-        if($schedule == 1)
+        if($date->hour == 1)
+        {
+          GetNewJob();
+        }
+
+        if($x == 3)
         {
           ZoneMapper();
 
           OfferJob();
 
-          GetNewJob();
+          $x = 0;
         }
 
         $date->hour++;
+
         if($date->hour <= 24)
         {
            $date->Update();
@@ -34,6 +42,8 @@ function Day($date)
 
     $date->hour = 1;
     $date->day++;
+    $x++;
+
     if($date->day <= 30)
     {
       $date->Update();
